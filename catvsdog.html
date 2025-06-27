@@ -1,0 +1,2428 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cat vs Dog Classifier - AI Mini Course</title>
+    <link rel="icon" href="icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="catvsdog.css" />
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <div class="header-content">
+          <div class="logo">🐱🐶 Cat vs Dog AI Course</div>
+          <a href="index.html" class="back-btn">← Back to Projects</a>
+        </div>
+      </div>
+    </header>
+
+    <div class="main-content">
+      <nav class="sidebar">
+        <h3 class="course-title">Course Lessons</h3>
+        <button class="lesson-item active" onclick="showLesson('payment')">
+          💳 Purchase Course - $7.99
+        </button>
+        <button class="lesson-item locked" onclick="showLesson('intro')">
+          🚀 Introduction & Demo
+        </button>
+        <button class="lesson-item" onclick="showLesson('basics')">
+          🧠 AI Basics (FREE)
+        </button>
+        <button class="lesson-item locked" onclick="showLesson('setup')">
+          ⚙️ Environment Setup
+        </button>
+        <button class="lesson-item locked" onclick="showLesson('data')">
+          📊 Understanding the Data
+        </button>
+        <button class="lesson-item locked" onclick="showLesson('model')">
+          🤖 Building the Model
+        </button>
+        <button class="lesson-item locked" onclick="showLesson('training')">
+          🏋️ Training the Model
+        </button>
+        <button class="lesson-item locked" onclick="window.location.href='catvsdog2.html'">
+          🔮 Making Predictions
+        </button>
+        <button class="lesson-item locked" onclick="window.location.href='catvsdog2.html'">
+          💻 Building the Web App
+        </button>
+        <button class="lesson-item locked" onclick="window.location.href='catvsdog2.html'">
+          🎯 Deployment & Next Steps
+        </button>
+      </nav>
+
+      <main class="content-area">
+        <!-- Payment Screen -->
+        <div id="payment" class="lesson-content">
+          <div class="payment-screen">
+            <h1>🐱🐶 Cat vs Dog Classifier</h1>
+            <p class="course-description">
+              Learn to build your first AI image classifier in under 1 hour!
+            </p>
+
+            <div class="price">$7.99</div>
+
+            <ul class="features-list">
+              <li>✅ Complete step-by-step tutorial</li>
+              <li>✅ All code provided & explained</li>
+              <li>✅ Free AI basics introduction</li>
+              <li>✅ Downloadable Jupyter notebook</li>
+              <li>✅ Requirements.txt included</li>
+              <li>✅ Bonus: Deploy your app guide</li>
+              <li>✅ Lifetime access</li>
+            </ul>
+
+            <a
+              class="payment-btn"
+              href="https://buy.stripe.com/00w7sLdl24ngdeg9hqgIo00"
+            >
+              🚀 Start Learning Now - $7.99
+            </a>
+
+            <p class="guarantee-text">
+              💰 30-day money-back guarantee<br />
+              🔒 Secure payment processing
+            </p>
+          </div>
+        </div>
+
+        <!-- Introduction -->
+          <div id="intro" class="lesson-content" style="display: none">
+          <h2>🚀 Welcome to Your First AI Project!</h2>
+
+          <div style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 1rem; border-radius: 8px; margin-bottom: 2rem;">
+            <strong>🎯 Goal:</strong> Understand exactly what you'll build and why it's amazing!<br>
+            <strong>⏱️ Time:</strong> 5-10 minutes
+          </div>
+
+          <h3>🎬 What You'll Actually Build</h3>
+          <p>By the end of this course, you'll have created a complete AI-powered web application that can:</p>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin: 2rem 0;">
+            
+            <div style="background: #f8f9ff; border: 2px solid #667eea; border-radius: 12px; padding: 1.5rem; text-align: center;">
+              <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">📸</div>
+              <h4>Accept Any Image</h4>
+              <p>Upload cat or dog photos from your phone, computer, or camera</p>
+            </div>
+            
+            <div style="background: #f8f9ff; border: 2px solid #667eea; border-radius: 12px; padding: 1.5rem; text-align: center;">
+              <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🧠</div>
+              <h4>AI Analysis</h4>
+              <p>Instantly analyze images using a trained neural network</p>
+            </div>
+            
+            <div style="background: #f8f9ff; border: 2px solid #667eea; border-radius: 12px; padding: 1.5rem; text-align: center;">
+              <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">📊</div>
+              <h4>Smart Predictions</h4>
+              <p>Get predictions like "Cat 94%" or "Dog 87%" with confidence scores</p>
+            </div>
+            
+            <div style="background: #f8f9ff; border: 2px solid #667eea; border-radius: 12px; padding: 1.5rem; text-align: center;">
+              <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🌐</div>
+              <h4>Beautiful Web App</h4>
+              <p>Professional interface that anyone can use</p>
+            </div>
+          </div>
+
+          <div class="demo-image" style="background: linear-gradient(45deg, #f0f8ff, #e6f3ff); border: 3px solid #4299e1;">
+            🖼️ Demo Preview: Upload cat photo → AI processes → "🐱 Cat detected with 94% confidence!"
+          </div>
+
+          <h3>🎯 Why This Project is Perfect for Beginners</h3>
+          
+          <div style="background: #f0fff4; border: 2px solid #48bb78; border-radius: 8px; padding: 1.5rem; margin: 1.5rem 0;">
+            <h4 style="color: #2f855a; margin-bottom: 1rem;">🎓 You'll Learn REAL AI Skills:</h4>
+            <ul style="color: #2f855a;">
+              <li><strong>Computer Vision:</strong> How AI "sees" and understands images</li>
+              <li><strong>Neural Networks:</strong> The brain-inspired technology behind AI</li>
+              <li><strong>Transfer Learning:</strong> Using pre-trained models (industry standard)</li>
+              <li><strong>Model Training:</strong> Teaching AI with thousands of examples</li>
+              <li><strong>Web Development:</strong> Building user-friendly interfaces</li>
+              <li><strong>Deployment:</strong> Making your AI accessible to the world</li>
+            </ul>
+          </div>
+
+          <h3>📈 Your Learning Journey</h3>
+          <p>Here's exactly how we'll build your AI step-by-step:</p>
+
+          <div style="margin: 2rem 0;">
+            <div style="display: flex; align-items: center; margin: 1rem 0; padding: 1rem; background: #f7fafc; border-radius: 8px;">
+              <div style="background: #667eea; color: white; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 1rem;">1</div>
+              <div>
+                <strong>Setup Your Pro Environment</strong><br>
+                <em>Install VS Code, Python, and AI libraries like the professionals use</em>
+              </div>
+            </div>
+
+            <div style="display: flex; align-items: center; margin: 1rem 0; padding: 1rem; background: #f7fafc; border-radius: 8px;">
+              <div style="background: #667eea; color: white; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 1rem;">2</div>
+              <div>
+                <strong>Load and Explore Data</strong><br>
+                <em>Download 25,000 cat and dog photos and understand how AI learns</em>
+              </div>
+            </div>
+
+            <div style="display: flex; align-items: center; margin: 1rem 0; padding: 1rem; background: #f7fafc; border-radius: 8px;">
+              <div style="background: #667eea; color: white; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 1rem;">3</div>
+              <div>
+                <strong>Build Your AI Model</strong><br>
+                <em>Create a neural network using Google's pre-trained MobileNetV2</em>
+              </div>
+            </div>
+
+            <div style="display: flex; align-items: center; margin: 1rem 0; padding: 1rem; background: #f7fafc; border-radius: 8px;">
+              <div style="background: #667eea; color: white; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 1rem;">4</div>
+              <div>
+                <strong>Train Your AI</strong><br>
+                <em>Watch your AI learn to recognize cats vs dogs with 90%+ accuracy</em>
+              </div>
+            </div>
+
+            <div style="display: flex; align-items: center; margin: 1rem 0; padding: 1rem; background: #f7fafc; border-radius: 8px;">
+              <div style="background: #667eea; color: white; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 1rem;">5</div>
+              <div>
+                <strong>Test and Predict</strong><br>
+                <em>Upload your own photos and see your AI make instant predictions</em>
+              </div>
+            </div>
+
+            <div style="display: flex; align-items: center; margin: 1rem 0; padding: 1rem; background: #f7fafc; border-radius: 8px;">
+              <div style="background: #667eea; color: white; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 1rem;">6</div>
+              <div>
+                <strong>Build Web App</strong><br>
+                <em>Create a beautiful, professional interface with Streamlit</em>
+              </div>
+            </div>
+
+            <div style="display: flex; align-items: center; margin: 1rem 0; padding: 1rem; background: #f7fafc; border-radius: 8px;">
+              <div style="background: #667eea; color: white; border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 1rem;">7</div>
+              <div>
+                <strong>Deploy to the World</strong><br>
+                <em>Share your AI with friends and add it to your portfolio</em>
+              </div>
+            </div>
+          </div>
+
+          <h3>🌟 Why This Matters in the Real World</h3>
+          <p>Cat vs Dog classification might seem simple, but this exact technology powers:</p>
+
+          <div style="background: #fff7ed; border: 2px solid #f97316; border-radius: 8px; padding: 1.5rem; margin: 1.5rem 0;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+              <div>
+                <strong>🏥 Medical Imaging</strong><br>
+                <em>"Is this scan normal or abnormal?"</em>
+              </div>
+              <div>
+                <strong>🚗 Self-Driving Cars</strong><br>
+                <em>"Is that a person, car, or sign?"</em>
+              </div>
+              <div>
+                <strong>📱 Photo Apps</strong><br>
+                <em>"Auto-tag people and objects"</em>
+              </div>
+              <div>
+                <strong>🛒 E-commerce</strong><br>
+                <em>"What product is this?"</em>
+              </div>
+              <div>
+                <strong>🔒 Security Systems</strong><br>
+                <em>"Is this person authorized?"</em>
+              </div>
+              <div>
+                <strong>🌾 Agriculture</strong><br>
+                <em>"Are these crops healthy?"</em>
+              </div>
+            </div>
+          </div>
+
+          <h3>💪 What You'll Be Able to Do After This Course</h3>
+          
+          <div style="background: linear-gradient(135deg, #48bb78, #38a169); color: white; padding: 2rem; border-radius: 12px; margin: 2rem 0;">
+            <h4 style="color: white; margin-bottom: 1rem;">🏆 Your New Superpowers:</h4>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; color: white;">
+              <div>
+                ✅ <strong>Build AI models</strong> from scratch<br>
+                ✅ <strong>Train neural networks</strong> on real data<br>
+                ✅ <strong>Create web applications</strong> with AI
+              </div>
+              <div>
+                ✅ <strong>Deploy AI to production</strong><br>
+                ✅ <strong>Understand computer vision</strong><br>
+                ✅ <strong>Use professional tools</strong> (VS Code, TensorFlow)
+              </div>
+            </div>
+          </div>
+
+          <h3>⏰ Time Investment & Results</h3>
+          
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 2rem 0;">
+            <div style="background: #e6f3ff; border: 2px solid #4299e1; border-radius: 8px; padding: 1rem; text-align: center;">
+              <div style="font-size: 2rem; margin-bottom: 0.5rem;">⏱️</div>
+              <strong>Total Time</strong><br>
+              <em>1-2 hours total</em><br>
+              <small>Can pause anytime</small>
+            </div>
+            
+            <div style="background: #f0fff4; border: 2px solid #48bb78; border-radius: 8px; padding: 1rem; text-align: center;">
+              <div style="font-size: 2rem; margin-bottom: 0.5rem;">🎯</div>
+              <strong>Accuracy Goal</strong><br>
+              <em>90%+ correct</em><br>
+              <small>Professional grade</small>
+            </div>
+            
+            <div style="background: #fff7ed; border: 2px solid #f97316; border-radius: 8px; padding: 1rem; text-align: center;">
+              <div style="font-size: 2rem; margin-bottom: 0.5rem;">🚀</div>
+              <strong>End Result</strong><br>
+              <em>Working AI app</em><br>
+              <small>Portfolio ready</small>
+            </div>
+          </div>
+
+          <h3>🎓 No Experience Required!</h3>
+          <p>This course is designed for complete beginners. You don't need to know:</p>
+          <ul>
+            <li>❌ Advanced mathematics or statistics</li>
+            <li>❌ Previous programming experience</li>
+            <li>❌ Complex AI theory</li>
+            <li>❌ Expensive hardware or software</li>
+          </ul>
+
+          <p><strong>We provide everything:</strong> Code, explanations, and step-by-step guidance!</p>
+
+          <div style="background: #f7fafc; border-radius: 8px; padding: 1rem; margin: 2rem 0; text-align: center;">
+            <p style="font-size: 1.1rem; color: #4a5568; margin: 0;">
+              <strong>🎉 Ready to become an AI developer?</strong><br>
+              Let's start by learning the fundamentals with our free AI basics section!
+            </p>
+          </div>
+
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 10%;"></div>
+          </div>
+
+          <button class="next-btn" onclick="nextLesson()">
+            I'm Ready! Let's Learn AI Basics →
+          </button>
+        </div>
+
+        <!-- AI Basics (FREE) -->
+        <div id="basics" class="lesson-content" style="display: none">
+          <h2>🧠 AI Basics - Free for Everyone!</h2>
+          
+          <div style="background: linear-gradient(135deg, #48bb78, #38a169); color: white; padding: 1.5rem; border-radius: 12px; margin-bottom: 2rem; text-align: center;">
+            <h3 style="color: white; margin-bottom: 0.5rem;">🎁 This entire section is FREE!</h3>
+            <p style="color: white; margin: 0;">Share this with friends who want to understand AI • No purchase required</p>
+          </div>
+
+          <h3>🤖 What is Artificial Intelligence? (Simple Explanation)</h3>
+          
+          <div style="background: #f8f9ff; border: 2px solid #667eea; border-radius: 12px; padding: 1.5rem; margin: 1.5rem 0;">
+            <p style="font-size: 1.1rem; line-height: 1.7;">
+              <strong>Think of teaching a child to recognize animals:</strong><br><br>
+              👶 You show them hundreds of photos: "This is a cat", "This is a dog"<br>
+              🧠 The child learns patterns: "Cats have pointy ears", "Dogs vary in size"<br>
+              🎯 Eventually, they can identify new animals they've never seen before!
+            </p>
+          </div>
+
+          <p style="font-size: 1.1rem; margin: 1.5rem 0;">
+            <strong>AI works exactly the same way!</strong> Instead of a child, we have a computer program. 
+            Instead of hundreds of photos, we use thousands or millions. The computer "learns" patterns 
+            from all these examples, then can recognize new cats and dogs it's never seen before.
+          </p>
+
+          <div class="demo-image" style="background: linear-gradient(45deg, #e6f3ff, #cce7ff); border: 3px dashed #4299e1;">
+            👶 Child Learning Process ≈ 🤖 AI Learning Process<br>
+            Show Examples → Find Patterns → Make Predictions
+          </div>
+
+          <h3>🎪 AI vs Machine Learning vs Deep Learning</h3>
+          <p>People use these terms interchangeably, but they're actually like Russian dolls:</p>
+          
+          <div style="margin: 2rem 0;">
+            <div style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 1.5rem; border-radius: 12px; margin-bottom: 1rem;">
+              <h4 style="color: white; margin-bottom: 0.5rem;">🎪 Artificial Intelligence (AI) - The Big Tent</h4>
+              <p style="color: white; margin: 0; font-size: 1.1rem;">
+                <strong>Definition:</strong> Making computers act intelligent<br>
+                <strong>Examples:</strong> Chess computers, Siri, recommendation systems, calculators
+              </p>
+            </div>
+            
+            <div style="background: #f0f8ff; border: 2px solid #4299e1; padding: 1.5rem; border-radius: 12px; margin: 0 2rem 1rem 2rem;">
+              <h4 style="color: #2b6cb0; margin-bottom: 0.5rem;">🤖 Machine Learning (ML) - The Main Show</h4>
+              <p style="color: #2b6cb0; margin: 0; font-size: 1.1rem;">
+                <strong>Definition:</strong> Teaching computers to learn from data<br>
+                <strong>Examples:</strong> Email spam detection, photo tagging, price predictions
+              </p>
+            </div>
+            
+            <div style="background: #f0fff4; border: 2px solid #48bb78; padding: 1.5rem; border-radius: 12px; margin: 0 4rem 0 4rem;">
+              <h4 style="color: #2f855a; margin-bottom: 0.5rem;">🧠 Deep Learning (DL) - The Star Performer</h4>
+              <p style="color: #2f855a; margin: 0; font-size: 1.1rem;">
+                <strong>Definition:</strong> Using brain-inspired networks<br>
+                <strong>Examples:</strong> Image recognition, ChatGPT, self-driving cars
+              </p>
+            </div>
+          </div>
+
+          <h3>🔬 How Does Image Recognition Actually Work?</h3>
+          <p>Let's break down the magic behind AI "seeing" images:</p>
+
+          <div style="background: #f7fafc; border-radius: 12px; padding: 2rem; margin: 2rem 0;">
+            <h4 style="color: #4a5568; margin-bottom: 1.5rem;">🎓 Phase 1: Training (Teaching the AI)</h4>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+              <div style="background: white; border: 2px solid #e2e8f0; border-radius: 8px; padding: 1rem; text-align: center;">
+                <div style="font-size: 2rem; margin-bottom: 0.5rem;">📸</div>
+                <strong>Step 1: Collect Data</strong><br>
+                <em>25,000 photos: 12,500 cats + 12,500 dogs, all labeled correctly</em>
+              </div>
+              
+              <div style="background: white; border: 2px solid #e2e8f0; border-radius: 8px; padding: 1rem; text-align: center;">
+                <div style="font-size: 2rem; margin-bottom: 0.5rem;">🔍</div>
+                <strong>Step 2: Find Patterns</strong><br>
+                <em>AI analyzes millions of pixels looking for consistent features</em>
+              </div>
+              
+              <div style="background: white; border: 2px solid #e2e8f0; border-radius: 8px; padding: 1rem; text-align: center;">
+                <div style="font-size: 2rem; margin-bottom: 0.5rem;">🧠</div>
+                <strong>Step 3: Learn Rules</strong><br>
+                <em>"Triangular ears + whiskers = cat", "Floppy ears + tongue = dog"</em>
+              </div>
+              
+              <div style="background: white; border: 2px solid #e2e8f0; border-radius: 8px; padding: 1rem; text-align: center;">
+                <div style="font-size: 2rem; margin-bottom: 0.5rem;">✅</div>
+                <strong>Step 4: Test & Improve</strong><br>
+                <em>Show new photos, check accuracy, adjust if wrong</em>
+              </div>
+            </div>
+
+            <h4 style="color: #4a5568; margin-bottom: 1.5rem;">🔮 Phase 2: Prediction (Using the Trained AI)</h4>
+            
+            <div style="background: white; border: 2px solid #4299e1; border-radius: 8px; padding: 1.5rem;">
+              <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                <div style="background: #4299e1; color: white; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 1rem;">1</div>
+                <div><strong>You upload a new cat photo</strong> (AI has never seen this specific cat before)</div>
+              </div>
+              
+              <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                <div style="background: #4299e1; color: white; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 1rem;">2</div>
+                <div><strong>AI analyzes the image:</strong> "I see triangular ears, whiskers, typical cat body proportions..."</div>
+              </div>
+              
+              <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                <div style="background: #48bb78; color: white; border-radius: 50%; width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; font-weight: bold; margin-right: 1rem;">3</div>
+                <div><strong>AI makes prediction:</strong> "Based on patterns I learned, this is 94% likely to be a cat!"</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="demo-image" style="background: linear-gradient(45deg, #f0fff4, #e6fffa); border: 3px solid #48bb78;">
+            📸 Your Photo → 🔍 AI Analysis → 🎯 "Cat 94%" or "Dog 87%" → ✨ Magic!
+          </div>
+
+          <h3>🏗️ What is a CNN (Convolutional Neural Network)?</h3>
+          <p>This is the specific type of AI we'll use. Think of it as a team of specialists:</p>
+          
+          <div style="background: linear-gradient(135deg, #f7fafc, #edf2f7); border-radius: 12px; padding: 2rem; margin: 2rem 0;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+              
+              <div style="background: white; border-left: 4px solid #e53e3e; padding: 1rem; border-radius: 8px;">
+                <h4 style="color: #e53e3e; margin-bottom: 0.5rem;">👁️ Edge Detective</h4>
+                <p style="margin: 0;">"I see lines, curves, and basic shapes in the image"</p>
+              </div>
+              
+              <div style="background: white; border-left: 4px solid #f56500; padding: 1rem; border-radius: 8px;">
+                <h4 style="color: #f56500; margin-bottom: 0.5rem;">🎨 Pattern Specialist</h4>
+                <p style="margin: 0;">"Those lines form whiskers, ears, and fur textures"</p>
+              </div>
+              
+              <div style="background: white; border-left: 4px solid #38a169; padding: 1rem; border-radius: 8px;">
+                <h4 style="color: #38a169; margin-bottom: 0.5rem;">🧩 Feature Combiner</h4>
+                <p style="margin: 0;">"Whiskers + pointy ears + small size = probably a cat"</p>
+              </div>
+              
+              <div style="background: white; border-left: 4px solid #4299e1; padding: 1rem; border-radius: 8px;">
+                <h4 style="color: #4299e1; margin-bottom: 0.5rem;">🎯 Final Judge</h4>
+                <p style="margin: 0;">"All evidence points to CAT with 95% confidence!"</p>
+              </div>
+            </div>
+          </div>
+
+          <h3>🛠️ Tools We'll Use (Don't Worry - We'll Set Everything Up!)</h3>
+          
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin: 2rem 0;">
+            
+            <div style="background: #fff7ed; border: 2px solid #f97316; border-radius: 12px; padding: 1.5rem;">
+              <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                <div style="font-size: 2rem; margin-right: 0.5rem;">🐍</div>
+                <h4 style="color: #ea580c; margin: 0;">Python</h4>
+              </div>
+              <p style="margin: 0; color: #7c2d12;">
+                The programming language everyone uses for AI. Don't worry - we'll give you all the code! 
+                It's like following a recipe.
+              </p>
+            </div>
+            
+            <div style="background: #f0f8ff; border: 2px solid #4299e1; border-radius: 12px; padding: 1.5rem;">
+              <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                <div style="font-size: 2rem; margin-right: 0.5rem;">🧠</div>
+                <h4 style="color: #2563eb; margin: 0;">TensorFlow</h4>
+              </div>
+              <p style="margin: 0; color: #1e3a8a;">
+                Google's free AI library. Think of it as a box of pre-built AI Lego blocks 
+                that we'll snap together.
+              </p>
+            </div>
+            
+            <div style="background: #f0fff4; border: 2px solid #48bb78; border-radius: 12px; padding: 1.5rem;">
+              <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                <div style="font-size: 2rem; margin-right: 0.5rem;">💻</div>
+                <h4 style="color: #059669; margin: 0;">VS Code</h4>
+              </div>
+              <p style="margin: 0; color: #064e3b;">
+                Professional code editor used by developers at Google, Microsoft, and Netflix. 
+                Free and beginner-friendly!
+              </p>
+            </div>
+            
+            <div style="background: #fef7ff; border: 2px solid #a855f7; border-radius: 12px; padding: 1.5rem;">
+              <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                <div style="font-size: 2rem; margin-right: 0.5rem;">🚀</div>
+                <h4 style="color: #7c3aed; margin: 0;">Streamlit</h4>
+              </div>
+              <p style="margin: 0; color: #581c87;">
+                Turns your AI into a beautiful web app in minutes. Upload photos, 
+                get instant predictions - no web development experience needed!
+              </p>
+            </div>
+          </div>
+
+          <h3>🌍 Real-World AI Applications (This is Everywhere!)</h3>
+          <p>The same cat vs dog technology we're building powers incredible applications:</p>
+
+          <div style="background: #f7fafc; border-radius: 12px; padding: 2rem; margin: 2rem 0;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+              
+              <div style="background: white; border-radius: 8px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                <h4 style="color: #dc2626; margin-bottom: 1rem;">🏥 Medical Diagnosis</h4>
+                <p style="margin: 0; color: #4a5568;">
+                  <strong>Question:</strong> "Is this X-ray showing healthy or diseased tissue?"<br>
+                  <strong>AI Impact:</strong> Helps doctors detect cancer, fractures, and diseases faster than ever before.
+                </p>
+              </div>
+              
+              <div style="background: white; border-radius: 8px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                <h4 style="color: #2563eb; margin-bottom: 1rem;">🚗 Self-Driving Cars</h4>
+                <p style="margin: 0; color: #4a5568;">
+                  <strong>Question:</strong> "Is that object a person, car, traffic sign, or animal?"<br>
+                  <strong>AI Impact:</strong> Tesla, Google, and Uber use this technology for autonomous vehicles.
+                </p>
+              </div>
+              
+              <div style="background: white; border-radius: 8px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                <h4 style="color: #059669; margin-bottom: 1rem;">📱 Social Media</h4>
+                <p style="margin: 0; color: #4a5568;">
+                  <strong>Question:</strong> "Who's in this photo and what objects are visible?"<br>
+                  <strong>AI Impact:</strong> Facebook, Instagram, and Google Photos automatically tag your pictures.
+                </p>
+              </div>
+              
+              <div style="background: white; border-radius: 8px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                <h4 style="color: #7c3aed; margin-bottom: 1rem;">🛒 E-commerce</h4>
+                <p style="margin: 0; color: #4a5568;">
+                  <strong>Question:</strong> "What product is the customer looking for in this image?"<br>
+                  <strong>AI Impact:</strong> Amazon, eBay, and Google use visual search to help you shop.
+                </p>
+              </div>
+              
+              <div style="background: white; border-radius: 8px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                <h4 style="color: #ea580c; margin-bottom: 1rem;">🔒 Security</h4>
+                <p style="margin: 0; color: #4a5568;">
+                  <strong>Question:</strong> "Is this person authorized to enter this building?"<br>
+                  <strong>AI Impact:</strong> Airports, banks, and offices use facial recognition for security.
+                </p>
+              </div>
+              
+              <div style="background: white; border-radius: 8px; padding: 1.5rem; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                <h4 style="color: #16a34a; margin-bottom: 1rem;">🌾 Agriculture</h4>
+                <p style="margin: 0; color: #4a5568;">
+                  <strong>Question:</strong> "Are these crops healthy or diseased?"<br>
+                  <strong>AI Impact:</strong> Farmers use drones with AI to monitor crop health and optimize yields.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <h3>📚 Common AI Terms Explained (Simple Definitions)</h3>
+          
+          <div style="background: #f8f9ff; border: 2px solid #667eea; border-radius: 12px; padding: 2rem; margin: 2rem 0;">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+              
+              <div style="margin-bottom: 1rem;">
+                <strong style="color: #667eea;">🎯 Model:</strong><br>
+                <em>The AI "brain" that makes predictions. Like a trained expert.</em>
+              </div>
+              
+              <div style="margin-bottom: 1rem;">
+                <strong style="color: #667eea;">📚 Training:</strong><br>
+                <em>Teaching the AI using thousands of examples. Like studying for an exam.</em>
+              </div>
+              
+              <div style="margin-bottom: 1rem;">
+                <strong style="color: #667eea;">🔮 Prediction:</strong><br>
+                <em>The AI's guess about new data. Like a doctor's diagnosis.</em>
+              </div>
+              
+              <div style="margin-bottom: 1rem;">
+                <strong style="color: #667eea;">📊 Accuracy:</strong><br>
+                <em>Percentage of correct predictions. 90% = right 9 times out of 10.</em>
+              </div>
+              
+              <div style="margin-bottom: 1rem;">
+                <strong style="color: #667eea;">🎓 Supervised Learning:</strong><br>
+                <em>Learning with labeled examples. Like studying with answer sheets.</em>
+              </div>
+              
+              <div style="margin-bottom: 1rem;">
+                <strong style="color: #667eea;">🔄 Transfer Learning:</strong><br>
+                <em>Using pre-trained knowledge. Like building on existing expertise.</em>
+              </div>
+            </div>
+          </div>
+
+          <div style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 2rem; border-radius: 12px; margin: 2rem 0;">
+            <h3 style="color: white; text-align: center; margin-bottom: 1.5rem;">🎯 By the End of This Course, You'll Understand:</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; color: white;">
+              <div>
+                ✅ How AI actually "sees" and processes images<br>
+                ✅ The difference between training and prediction<br>
+                ✅ Why neural networks are so powerful
+              </div>
+              <div>
+                ✅ How to use pre-trained models effectively<br>
+                ✅ How to build and deploy working AI applications<br>
+                ✅ Real-world applications of computer vision
+              </div>
+            </div>
+          </div>
+
+          <div style="background: #f0fff4; border: 2px solid #48bb78; border-radius: 8px; padding: 1.5rem; margin: 2rem 0; text-align: center;">
+            <h4 style="color: #2f855a; margin-bottom: 1rem;">🎉 Congratulations!</h4>
+            <p style="color: #2f855a; margin: 0; font-size: 1.1rem;">
+              You now understand more about AI than 90% of people! 🧠<br>
+              <strong>Ready to start building your own AI?</strong>
+            </p>
+          </div>
+
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 20%;"></div>
+          </div>
+
+          <button class="next-btn" onclick="nextLesson()">
+            I Understand AI! Let's Set Up VS Code →
+          </button>
+        </div>
+
+        <!-- Environment Setup Lesson - Add this to catvsdog.html -->
+<div id="setup" class="lesson-content" style="display: none">
+  <h2>⚙️ Environment Setup</h2>
+  
+  <div style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 1rem; border-radius: 8px; margin-bottom: 2rem;">
+    <strong>🎯 Goal:</strong> Install all the tools you need to build AI<br>
+    <strong>⏱️ Time:</strong> 15-20 minutes<br>
+    <strong>💻 Platform:</strong> Windows, Mac, or Linux
+  </div>
+
+  <h3>📋 What We'll Install</h3>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin: 2rem 0;">
+    <div style="background: #f8f9ff; border: 2px solid #667eea; border-radius: 12px; padding: 1.5rem;">
+      <h4>🐍 Python 3.9+</h4>
+      <p>The programming language for AI development</p>
+      <ul>
+        <li>Easy to learn</li>
+        <li>Huge AI community</li>
+        <li>Tons of libraries</li>
+      </ul>
+    </div>
+    
+    <div style="background: #f0fff4; border: 2px solid #48bb78; border-radius: 12px; padding: 1.5rem;">
+      <h4>💻 VS Code</h4>
+      <p>Professional code editor</p>
+      <ul>
+        <li>Intelligent suggestions</li>
+        <li>Built-in terminal</li>
+        <li>Extensions for Python</li>
+      </ul>
+    </div>
+    
+    <div style="background: #fff7ed; border: 2px solid #f97316; border-radius: 12px; padding: 1.5rem;">
+      <h4>📦 Python Packages</h4>
+      <p>AI and ML libraries</p>
+      <ul>
+        <li>TensorFlow</li>
+        <li>NumPy & Pandas</li>
+        <li>Streamlit</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>🚀 Step 1: Install Python</h3>
+  <div style="background: #f7fafc; border-radius: 8px; padding: 1.5rem; margin: 1rem 0;">
+    <h4>For Windows:</h4>
+    <ol>
+      <li>Go to <a href="https://python.org" target="_blank" style="color: #667eea;">python.org</a></li>
+      <li>Download Python 3.9+ (click the big yellow button)</li>
+      <li><strong>IMPORTANT:</strong> Run installer and CHECK "Add Python to PATH"</li>
+      <li>Click "Install Now"</li>
+      <li>Wait for installation to complete</li>
+    </ol>
+    
+    <h4>For Mac:</h4>
+    <ol>
+      <li>Install Homebrew first (copy-paste this into Terminal):</li>
+      <div class="code-block">/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</div>
+      <li>Then install Python:</li>
+      <div class="code-block">brew install python</div>
+    </ol>
+    
+    <h4>For Linux (Ubuntu/Debian):</h4>
+    <ol>
+      <li>Update package list:</li>
+      <div class="code-block">sudo apt update</div>
+      <li>Install Python and pip:</li>
+      <div class="code-block">sudo apt install python3 python3-pip</div>
+    </ol>
+  </div>
+
+  <div style="background: #e6fffa; border: 2px solid #38b2ac; border-radius: 8px; padding: 1rem; margin: 1rem 0;">
+    <h4>✅ Verify Python Installation</h4>
+    <p>Open Command Prompt (Windows) or Terminal (Mac/Linux) and type:</p>
+    <div class="code-block">python --version</div>
+    <p>You should see something like: <code>Python 3.9.7</code></p>
+  </div>
+
+  <h3>💻 Step 2: Install VS Code</h3>
+  <div style="background: #f0f8ff; border-radius: 8px; padding: 1.5rem; margin: 1rem 0;">
+    <ol>
+      <li>Go to <a href="https://code.visualstudio.com" target="_blank" style="color: #667eea;">code.visualstudio.com</a></li>
+      <li>Download for your operating system</li>
+      <li>Install with default settings</li>
+      <li>Open VS Code</li>
+      <li><strong>Install Python extension:</strong>
+        <ul>
+          <li>Click Extensions icon (🧩) on left sidebar</li>
+          <li>Search "Python"</li>
+          <li>Install the Microsoft Python extension (it has millions of downloads)</li>
+        </ul>
+      </li>
+    </ol>
+    
+    <div style="background: white; border: 2px dashed #4299e1; padding: 1rem; margin: 1rem 0; text-align: center;">
+      💡 <strong>Pro Tip:</strong> Also install "Pylance" extension for better code completion!
+    </div>
+  </div>
+
+  <h3>📦 Step 3: Install AI Libraries</h3>
+  <div style="background: #f0fff4; border-radius: 8px; padding: 1.5rem; margin: 1rem 0;">
+    <p><strong>Open terminal/command prompt and run these commands one by one:</strong></p>
+    
+    <h4>Essential AI Libraries:</h4>
+    <div class="code-block">
+pip install tensorflow<br>
+pip install pandas numpy matplotlib<br>
+pip install streamlit<br>
+pip install pillow opencv-python<br>
+pip install jupyter
+    </div>
+    
+    <p><strong>What each library does:</strong></p>
+    <ul>
+      <li><strong>TensorFlow:</strong> Google's AI framework - the brain of our AI</li>
+      <li><strong>Pandas/NumPy:</strong> Data handling and math operations</li>
+      <li><strong>Streamlit:</strong> Turns Python code into beautiful web apps</li>
+      <li><strong>Pillow/OpenCV:</strong> Image processing and manipulation</li>
+      <li><strong>Jupyter:</strong> Interactive notebooks for experimentation</li>
+    </ul>
+    
+    <div style="background: #fff7ed; border: 2px solid #f97316; padding: 1rem; margin: 1rem 0;">
+      <h4>⏰ Installation Time</h4>
+      <p>This might take 5-10 minutes depending on your internet speed. Perfect time for a coffee break! ☕</p>
+    </div>
+  </div>
+
+  <h3>✅ Step 4: Test Your Setup</h3>
+  <div style="background: #fff7ed; border-radius: 8px; padding: 1.5rem; margin: 1rem 0;">
+    <p><strong>Let's make sure everything works! Create a test file:</strong></p>
+    
+    <ol>
+      <li>Open VS Code</li>
+      <li>Create new file: <code>File → New File</code></li>
+      <li>Save it as <code>test_setup.py</code></li>
+      <li>Copy and paste this code:</li>
+    </ol>
+    
+    <div class="code-block">
+import tensorflow as tf<br>
+import pandas as pd<br>
+import numpy as np<br>
+from PIL import Image<br>
+import streamlit as st<br>
+<br>
+print("🎉 All libraries imported successfully!")<br>
+print(f"TensorFlow version: {tf.__version__}")<br>
+print(f"NumPy version: {np.__version__}")<br>
+print(f"Pandas version: {pd.__version__}")<br>
+print("✅ Your environment is ready for AI development!")<br>
+print("🚀 Let's build some amazing AI projects!")
+    </div>
+    
+    <ol start="5">
+      <li>Save the file (Ctrl/Cmd + S)</li>
+      <li>Open terminal in VS Code: <code>Terminal → New Terminal</code></li>
+      <li>Run the test:</li>
+    </ol>
+    
+    <div class="code-block">python test_setup.py</div>
+    
+    <div style="background: #f0fff4; border: 2px solid #48bb78; padding: 1rem; margin: 1rem 0;">
+      <h4>🎯 Expected Output:</h4>
+      <p>You should see something like:</p>
+      <code>
+        🎉 All libraries imported successfully!<br>
+        TensorFlow version: 2.15.0<br>
+        NumPy version: 1.24.3<br>
+        Pandas version: 2.0.3<br>
+        ✅ Your environment is ready for AI development!<br>
+        🚀 Let's build some amazing AI projects!
+      </code>
+    </div>
+  </div>
+
+  <h3>🎯 Troubleshooting Common Issues</h3>
+  <div style="background: #fed7d7; border-radius: 8px; padding: 1.5rem; margin: 1rem 0;">
+    <div style="margin-bottom: 1.5rem;">
+      <h4>❌ "Python not found" or "'python' is not recognized"</h4>
+      <p><strong>Solution:</strong></p>
+      <ul>
+        <li>Python not in PATH. Reinstall Python and make sure to check "Add Python to PATH"</li>
+        <li>Try using <code>python3</code> instead of <code>python</code></li>
+        <li>On Windows, try <code>py</code> instead of <code>python</code></li>
+      </ul>
+    </div>
+    
+    <div style="margin-bottom: 1.5rem;">
+      <h4>❌ "pip not found" or "'pip' is not recognized"</h4>
+      <p><strong>Solution:</strong></p>
+      <ul>
+        <li>Use <code>python -m pip install ...</code> instead of <code>pip install ...</code></li>
+        <li>Try <code>python3 -m pip install ...</code> on Mac/Linux</li>
+      </ul>
+    </div>
+    
+    <div style="margin-bottom: 1.5rem;">
+      <h4>❌ "Permission denied" or "Access denied"</h4>
+      <p><strong>Solution:</strong></p>
+      <ul>
+        <li>Add <code>--user</code> flag: <code>pip install --user tensorflow</code></li>
+        <li>On Mac/Linux, you might need <code>sudo</code> (not recommended for pip)</li>
+      </ul>
+    </div>
+    
+    <div style="margin-bottom: 1.5rem;">
+      <h4>❌ "Module not found" when testing</h4>
+      <p><strong>Solution:</strong></p>
+      <ul>
+        <li>Make sure you're using the same Python that installed the packages</li>
+        <li>In VS Code, press <code>Ctrl+Shift+P</code> and search "Python: Select Interpreter"</li>
+        <li>Choose the Python version where you installed the packages</li>
+      </ul>
+    </div>
+    
+    <div>
+      <h4>❌ TensorFlow installation issues</h4>
+      <p><strong>Solution:</strong></p>
+      <ul>
+        <li>Try: <code>pip install tensorflow-cpu</code> (CPU-only version, easier to install)</li>
+        <li>Make sure you have Python 3.7-3.11 (TensorFlow doesn't support newer versions yet)</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>🎨 Bonus: Make VS Code Beautiful</h3>
+  <div style="background: #fef7ff; border-radius: 8px; padding: 1.5rem; margin: 1rem 0;">
+    <p>Make your coding environment as beautiful as your future AI projects!</p>
+    
+    <h4>Recommended VS Code Extensions:</h4>
+    <ul>
+      <li><strong>Python</strong> - Essential Python support</li>
+      <li><strong>Pylance</strong> - Advanced Python language features</li>
+      <li><strong>Material Icon Theme</strong> - Beautiful file icons</li>
+      <li><strong>One Dark Pro</strong> - Popular dark theme</li>
+      <li><strong>Rainbow Brackets</strong> - Color-coded brackets</li>
+      <li><strong>GitLens</strong> - Enhanced Git capabilities</li>
+    </ul>
+    
+    <div style="background: white; border: 2px dashed #a855f7; padding: 1rem; margin: 1rem 0; text-align: center;">
+      🎨 <strong>Pro Tip:</strong> Press <code>Ctrl+Shift+P</code> → "Preferences: Color Theme" to change themes!
+    </div>
+  </div>
+
+  <h3>🎓 What You Just Accomplished</h3>
+  <div style="background: linear-gradient(135deg, #48bb78, #38a169); color: white; padding: 2rem; border-radius: 12px; margin: 2rem 0;">
+    <h4 style="color: white; margin-bottom: 1rem;">🏆 Congratulations! You now have:</h4>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; color: white;">
+      <div>
+        ✅ <strong>Professional Python setup</strong><br>
+        ✅ <strong>VS Code with AI extensions</strong><br>
+        ✅ <strong>All essential AI libraries</strong>
+      </div>
+      <div>
+        ✅ <strong>TensorFlow for deep learning</strong><br>
+        ✅ <strong>Data processing tools</strong><br>
+        ✅ <strong>Web app creation capabilities</strong>
+      </div>
+    </div>
+    
+    <div style="background: rgba(255, 255, 255, 0.2); padding: 1rem; border-radius: 8px; margin-top: 1rem; text-align: center;">
+      <p style="color: white; margin: 0; font-size: 1.1rem;">
+        <strong>🚀 You're now using the same tools as AI engineers at Google, Tesla, and OpenAI!</strong>
+      </p>
+    </div>
+  </div>
+
+  <h3>🔍 Quick Environment Check</h3>
+  <div style="background: #f8f9ff; border: 2px solid #667eea; border-radius: 8px; padding: 1.5rem; margin: 1rem 0;">
+    <p><strong>Before moving on, let's do a final check:</strong></p>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+      <div style="background: white; padding: 1rem; border-radius: 8px;">
+        <h4>✅ Python Working</h4>
+        <p><code>python --version</code><br>shows version number</p>
+      </div>
+      
+      <div style="background: white; padding: 1rem; border-radius: 8px;">
+        <h4>✅ VS Code Ready</h4>
+        <p>Opens and has Python extension installed</p>
+      </div>
+      
+      <div style="background: white; padding: 1rem; border-radius: 8px;">
+        <h4>✅ Libraries Installed</h4>
+        <p>test_setup.py runs without errors</p>
+      </div>
+      
+      <div style="background: white; padding: 1rem; border-radius: 8px;">
+        <h4>✅ Ready to Code</h4>
+        <p>You can create and run Python files</p>
+      </div>
+    </div>
+  </div>
+
+  <div style="background: #f0fff4; border: 2px solid #48bb78; border-radius: 8px; padding: 1.5rem; margin: 2rem 0; text-align: center;">
+    <h4 style="color: #2f855a; margin-bottom: 1rem;">🎉 Environment Setup Complete!</h4>
+    <p style="color: #2f855a; margin: 0; font-size: 1.1rem;">
+      Your AI development environment is ready! 🧠<br>
+      <strong>Time to get our hands on some real data!</strong>
+    </p>
+  </div>
+
+  <div class="progress-bar">
+    <div class="progress-fill" style="width: 30%;"></div>
+  </div>
+
+  <button class="next-btn" onclick="nextLesson()">
+    Environment Ready! Let's Get Our Data →
+  </button>
+</div>
+
+        <!-- Understanding the Data Lesson - Add this to catvsdog.html -->
+<div id="data" class="lesson-content" style="display: none">
+  <h2>📊 Understanding the Data</h2>
+  
+  <div style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 1rem; border-radius: 8px; margin-bottom: 2rem;">
+    <strong>🎯 Goal:</strong> Download and explore our cat vs dog dataset<br>
+    <strong>⏱️ Time:</strong> 15-20 minutes<br>
+    <strong>📦 Dataset:</strong> 25,000 labeled cat and dog images
+  </div>
+
+  <h3>🔍 What Makes Good AI Data?</h3>
+  <div style="background: #f8f9ff; border: 2px solid #667eea; border-radius: 12px; padding: 1.5rem; margin: 1.5rem 0;">
+    <p><strong>Think of training AI like teaching a child to recognize animals:</strong></p>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1rem 0;">
+      <div style="text-align: center;">
+        <div style="font-size: 2rem; margin-bottom: 0.5rem;">📚</div>
+        <h4>Lots of Examples</h4>
+        <p>The more photos, the better the AI learns</p>
+      </div>
+      
+      <div style="text-align: center;">
+        <div style="font-size: 2rem; margin-bottom: 0.5rem;">🏷️</div>
+        <h4>Correct Labels</h4>
+        <p>Each photo must be labeled "cat" or "dog" correctly</p>
+      </div>
+      
+      <div style="text-align: center;">
+        <div style="font-size: 2rem; margin-bottom: 0.5rem;">🌈</div>
+        <h4>Variety</h4>
+        <p>Different breeds, colors, poses, backgrounds</p>
+      </div>
+      
+      <div style="text-align: center;">
+        <div style="font-size: 2rem; margin-bottom: 0.5rem;">⚖️</div>
+        <h4>Balance</h4>
+        <p>Equal numbers of cats and dogs</p>
+      </div>
+    </div>
+  </div>
+
+  <h3>📁 Our Dataset: Microsoft's Cats vs Dogs</h3>
+  <div style="background: #f0fff4; border-radius: 8px; padding: 1.5rem; margin: 1rem 0;">
+    <p>We'll use Microsoft's famous <strong>Cats vs Dogs dataset</strong> - the same data used by researchers worldwide!</p>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
+      <div style="background: white; border: 2px solid #48bb78; border-radius: 8px; padding: 1rem;">
+        <h4 style="color: #2f855a;">📊 Dataset Stats</h4>
+        <ul style="color: #2f855a;">
+          <li><strong>Total Images:</strong> 25,000</li>
+          <li><strong>Cats:</strong> 12,500 photos</li>
+          <li><strong>Dogs:</strong> 12,500 photos</li>
+          <li><strong>Format:</strong> JPEG images</li>
+          <li><strong>Size:</strong> ~540 MB</li>
+        </ul>
+      </div>
+      
+      <div style="background: white; border: 2px solid #4299e1; border-radius: 8px; padding: 1rem;">
+        <h4 style="color: #2563eb;">🎨 Image Variety</h4>
+        <ul style="color: #2563eb;">
+          <li>Different breeds and sizes</li>
+          <li>Various poses and angles</li>
+          <li>Indoor and outdoor scenes</li>
+          <li>Professional and casual photos</li>
+          <li>Different lighting conditions</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <h3>⬇️ Step 1: Download the Dataset</h3>
+  <div style="background: #fff7ed; border-radius: 8px; padding: 1.5rem; margin: 1rem 0;">
+    <p><strong>We'll download the data directly in our Python code, but let's understand what we're getting:</strong></p>
+    
+    <ol>
+      <li>Open VS Code</li>
+      <li>Create a new file: <code>download_data.py</code></li>
+      <li>Copy and paste this code:</li>
+    </ol>
+    
+    <div class="code-block">
+import tensorflow as tf<br>
+import os<br>
+import zipfile<br>
+from tensorflow.keras.utils import get_file<br>
+<br>
+print("🐱🐶 Downloading Cats vs Dogs dataset...")<br>
+print("This might take a few minutes depending on your internet speed")<br>
+<br>
+# Download the dataset<br>
+url = "https://download.microsoft.com/download/3/E/1/3E1C3F21-ECDB-4869-8368-6DEBA77B919F/kagglecatsanddogs_5340.zip"<br>
+<br>
+# Download and extract<br>
+dataset_path = get_file(<br>
+    "cats_and_dogs.zip",<br>
+    origin=url,<br>
+    extract=True<br>
+)<br>
+<br>
+print(f"✅ Dataset downloaded to: {dataset_path}")<br>
+print("🎉 Ready to explore our data!")
+    </div>
+    
+    <ol start="4">
+      <li>Save and run the file:</li>
+    </ol>
+    
+    <div class="code-block">python download_data.py</div>
+    
+    <div style="background: #e6fffa; border: 2px solid #38b2ac; padding: 1rem; margin: 1rem 0;">
+      <h4>⏰ Download Time</h4>
+      <p>The dataset is about 540MB, so download time depends on your internet speed:</p>
+      <ul>
+        <li><strong>Fast connection:</strong> 2-5 minutes</li>
+        <li><strong>Average connection:</strong> 5-10 minutes</li>
+        <li><strong>Slow connection:</strong> 10-20 minutes</li>
+      </ul>
+      <p>Perfect time to grab a snack! 🍿</p>
+    </div>
+  </div>
+
+  <h3>🔍 Step 2: Explore the Data Structure</h3>
+  <div style="background: #f7fafc; border-radius: 8px; padding: 1.5rem; margin: 1rem 0;">
+    <p><strong>Let's see what we downloaded! Create a new file: <code>explore_data.py</code></strong></p>
+    
+    <div class="code-block">
+import os<br>
+import matplotlib.pyplot as plt<br>
+from PIL import Image<br>
+import random<br>
+<br>
+# Find the data directory<br>
+base_dir = os.path.expanduser('~/.keras/datasets/cats_and_dogs_filtered')<br>
+<br>
+# Check the structure<br>
+print("📁 Dataset structure:")<br>
+print(f"Base directory: {base_dir}")<br>
+<br>
+for root, dirs, files in os.walk(base_dir):<br>
+    level = root.replace(base_dir, '').count(os.sep)<br>
+    indent = ' ' * 2 * level<br>
+    print(f"{indent}{os.path.basename(root)}/")<br>
+    subindent = ' ' * 2 * (level + 1)<br>
+    for file in files[:3]:  # Show only first 3 files<br>
+        print(f"{subindent}{file}")<br>
+    if len(files) > 3:<br>
+        print(f"{subindent}... and {len(files)-3} more files")<br>
+<br>
+# Count images in each category<br>
+train_cats_dir = os.path.join(base_dir, 'train/cats')<br>
+train_dogs_dir = os.path.join(base_dir, 'train/dogs')<br>
+validation_cats_dir = os.path.join(base_dir, 'validation/cats')<br>
+validation_dogs_dir = os.path.join(base_dir, 'validation/dogs')<br>
+<br>
+print("\n📊 Image counts:")<br>
+print(f"Training cats: {len(os.listdir(train_cats_dir))}")<br>
+print(f"Training dogs: {len(os.listdir(train_dogs_dir))}")<br>
+print(f"Validation cats: {len(os.listdir(validation_cats_dir))}")<br>
+print(f"Validation dogs: {len(os.listdir(validation_dogs_dir))}")<br>
+<br>
+total_train = len(os.listdir(train_cats_dir)) + len(os.listdir(train_dogs_dir))<br>
+total_val = len(os.listdir(validation_cats_dir)) + len(os.listdir(validation_dogs_dir))<br>
+<br>
+print(f"\n🎯 Total training images: {total_train}")<br>
+print(f"🎯 Total validation images: {total_val}")<br>
+print(f"🎯 Grand total: {total_train + total_val}")
+    </div>
+    
+    <div style="background: #f0f8ff; border: 2px solid #4299e1; padding: 1rem; margin: 1rem 0;">
+      <h4>🔍 What This Code Does:</h4>
+      <ul>
+        <li><strong>Walks through folders:</strong> Shows the directory structure</li>
+        <li><strong>Counts images:</strong> How many cats and dogs we have</li>
+        <li><strong>Splits data:</strong> Training vs validation sets</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>🖼️ Step 3: Look at Sample Images</h3>
+  <div style="background: #fef7ff; border-radius: 8px; padding: 1.5rem; margin: 1rem 0;">
+    <p><strong>Let's see what our cats and dogs actually look like! Create: <code>view_samples.py</code></strong></p>
+    
+    <div class="code-block">
+import os<br>
+import matplotlib.pyplot as plt<br>
+from PIL import Image<br>
+import random<br>
+<br>
+# Set up the directories<br>
+base_dir = os.path.expanduser('~/.keras/datasets/cats_and_dogs_filtered')<br>
+train_cats_dir = os.path.join(base_dir, 'train/cats')<br>
+train_dogs_dir = os.path.join(base_dir, 'train/dogs')<br>
+<br>
+# Get random sample images<br>
+cat_files = os.listdir(train_cats_dir)<br>
+dog_files = os.listdir(train_dogs_dir)<br>
+<br>
+# Pick 4 random cats and 4 random dogs<br>
+sample_cats = random.sample(cat_files, 4)<br>
+sample_dogs = random.sample(dog_files, 4)<br>
+<br>
+# Create a figure to display images<br>
+fig, axes = plt.subplots(2, 4, figsize=(15, 8))<br>
+fig.suptitle('🐱🐶 Sample Images from Our Dataset', fontsize=16, fontweight='bold')<br>
+<br>
+# Display cat images<br>
+for i, cat_file in enumerate(sample_cats):<br>
+    img_path = os.path.join(train_cats_dir, cat_file)<br>
+    img = Image.open(img_path)<br>
+    axes[0, i].imshow(img)<br>
+    axes[0, i].set_title(f'😺 Cat {i+1}', fontweight='bold')<br>
+    axes[0, i].axis('off')<br>
+<br>
+# Display dog images<br>
+for i, dog_file in enumerate(sample_dogs):<br>
+    img_path = os.path.join(train_dogs_dir, dog_file)<br>
+    img = Image.open(img_path)<br>
+    axes[1, i].imshow(img)<br>
+    axes[1, i].set_title(f'🐕 Dog {i+1}', fontweight='bold')<br>
+    axes[1, i].axis('off')<br>
+<br>
+plt.tight_layout()<br>
+plt.show()<br>
+<br>
+print("🎨 Sample images displayed!")<br>
+print("Notice the variety in breeds, poses, and backgrounds!")
+    </div>
+    
+    <div style="background: #e6fffa; border: 2px solid #38b2ac; padding: 1rem; margin: 1rem 0;">
+      <h4>🖼️ What You'll See:</h4>
+      <ul>
+        <li><strong>Different cat breeds:</strong> Persian, Siamese, tabby cats</li>
+        <li><strong>Various dog breeds:</strong> Golden retrievers, bulldogs, chihuahuas</li>
+        <li><strong>Different poses:</strong> Sitting, lying, standing, playing</li>
+        <li><strong>Various backgrounds:</strong> Indoor, outdoor, studio photos</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>📏 Step 4: Analyze Image Properties</h3>
+  <div style="background: #f8f9ff; border-radius: 8px; padding: 1.5rem; margin: 1rem 0;">
+    <p><strong>Let's understand our images better! Create: <code>analyze_images.py</code></strong></p>
+    
+    <div class="code-block">
+import os<br>
+from PIL import Image<br>
+import matplotlib.pyplot as plt<br>
+import numpy as np<br>
+<br>
+# Set up directories<br>
+base_dir = os.path.expanduser('~/.keras/datasets/cats_and_dogs_filtered')<br>
+train_cats_dir = os.path.join(base_dir, 'train/cats')<br>
+train_dogs_dir = os.path.join(base_dir, 'train/dogs')<br>
+<br>
+# Function to analyze image sizes<br>
+def analyze_image_sizes(directory, category):<br>
+    widths = []<br>
+    heights = []<br>
+    file_sizes = []<br>
+    <br>
+    files = os.listdir(directory)<br>
+    # Sample 100 images to speed up analysis<br>
+    sample_files = files[:100] if len(files) > 100 else files<br>
+    <br>
+    for filename in sample_files:<br>
+        img_path = os.path.join(directory, filename)<br>
+        try:<br>
+            with Image.open(img_path) as img:<br>
+                width, height = img.size<br>
+                widths.append(width)<br>
+                heights.append(height)<br>
+                file_sizes.append(os.path.getsize(img_path))<br>
+        except Exception as e:<br>
+            print(f"Error processing {filename}: {e}")<br>
+    <br>
+    return widths, heights, file_sizes<br>
+<br>
+# Analyze cats and dogs<br>
+print("🔍 Analyzing image properties...")<br>
+cat_widths, cat_heights, cat_sizes = analyze_image_sizes(train_cats_dir, "cats")<br>
+dog_widths, dog_heights, dog_sizes = analyze_image_sizes(train_dogs_dir, "dogs")<br>
+<br>
+# Print statistics<br>
+print("\n📊 Image Statistics:")<br>
+print(f"Cats - Average size: {np.mean(cat_widths):.0f}x{np.mean(cat_heights):.0f} pixels")<br>
+print(f"Dogs - Average size: {np.mean(dog_widths):.0f}x{np.mean(dog_heights):.0f} pixels")<br>
+print(f"Cats - File size range: {min(cat_sizes)//1024:.0f}KB to {max(cat_sizes)//1024:.0f}KB")<br>
+print(f"Dogs - File size range: {min(dog_sizes)//1024:.0f}KB to {max(dog_sizes)//1024:.0f}KB")<br>
+<br>
+# Create visualization<br>
+fig, axes = plt.subplots(1, 2, figsize=(12, 5))<br>
+<br>
+# Width histogram<br>
+axes[0].hist(cat_widths + dog_widths, bins=30, alpha=0.7, color='blue')<br>
+axes[0].set_title('📏 Image Widths Distribution')<br>
+axes[0].set_xlabel('Width (pixels)')<br>
+axes[0].set_ylabel('Count')<br>
+<br>
+# Height histogram<br>
+axes[1].hist(cat_heights + dog_heights, bins=30, alpha=0.7, color='green')<br>
+axes[1].set_title('📏 Image Heights Distribution')<br>
+axes[1].set_xlabel('Height (pixels)')<br>
+axes[1].set_ylabel('Count')<br>
+<br>
+plt.tight_layout()<br>
+plt.show()<br>
+<br>
+print("📈 Image size distribution plotted!")
+    </div>
+  </div>
+
+  <h3>🧠 Why This Data Analysis Matters</h3>
+  <div style="background: #f7fafc; border: 2px solid #a855f7; border-radius: 12px; padding: 2rem; margin: 2rem 0;">
+    <h4 style="color: #7c3aed; margin-bottom: 1rem;">🎓 Key Insights for AI Training:</h4>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+      <div style="background: white; border-left: 4px solid #e53e3e; padding: 1rem; border-radius: 8px;">
+        <h4 style="color: #e53e3e; margin-bottom: 0.5rem;">📐 Image Sizes</h4>
+        <p style="margin: 0;">Images have different sizes, so we'll need to resize them to a standard size (like 150x150) for our AI to process uniformly.</p>
+      </div>
+      
+      <div style="background: white; border-left: 4px solid #f56500; padding: 1rem; border-radius: 8px;">
+        <h4 style="color: #f56500; margin-bottom: 0.5rem;">⚖️ Data Balance</h4>
+        <p style="margin: 0;">We have equal numbers of cats and dogs, which prevents the AI from being biased toward one animal.</p>
+      </div>
+      
+      <div style="background: white; border-left: 4px solid #38a169; padding: 1rem; border-radius: 8px;">
+        <h4 style="color: #38a169; margin-bottom: 0.5rem;">🌈 Variety</h4>
+        <p style="margin: 0;">Different breeds, poses, and backgrounds help the AI learn general features rather than memorizing specific examples.</p>
+      </div>
+      
+      <div style="background: white; border-left: 4px solid #4299e1; padding: 1rem; border-radius: 8px;">
+        <h4 style="color: #4299e1; margin-bottom: 0.5rem;">📊 Train/Validation Split</h4>
+        <p style="margin: 0;">Having separate training and validation sets helps us measure how well our AI performs on new, unseen data.</p>
+      </div>
+    </div>
+  </div>
+
+  <h3>🔄 Data Preprocessing Preview</h3>
+  <div style="background: #fff7ed; border-radius: 8px; padding: 1.5rem; margin: 1rem 0;">
+    <p><strong>Before we can train our AI, we need to prepare the data. Here's what we'll do next:</strong></p>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
+      <div style="background: white; border: 2px solid #f97316; border-radius: 8px; padding: 1rem; text-align: center;">
+        <div style="font-size: 2rem; margin-bottom: 0.5rem;">📏</div>
+        <h4>Resize Images</h4>
+        <p>Convert all images to 150x150 pixels</p>
+      </div>
+      
+      <div style="background: white; border: 2px solid #f97316; border-radius: 8px; padding: 1rem; text-align: center;">
+        <div style="font-size: 2rem; margin-bottom: 0.5rem;">🔢</div>
+        <h4>Normalize Pixels</h4>
+        <p>Scale pixel values from 0-255 to 0-1</p>
+      </div>
+      
+      <div style="background: white; border: 2px solid #f97316; border-radius: 8px; padding: 1rem; text-align: center;">
+        <div style="font-size: 2rem; margin-bottom: 0.5rem;">🏷️</div>
+        <h4>Create Labels</h4>
+        <p>Convert "cat" and "dog" to numbers (0 and 1)</p>
+      </div>
+      
+      <div style="background: white; border: 2px solid #f97316; border-radius: 8px; padding: 1rem; text-align: center;">
+        <div style="font-size: 2rem; margin-bottom: 0.5rem;">📦</div>
+        <h4>Batch Data</h4>
+        <p>Group images into batches for efficient training</p>
+      </div>
+    </div>
+  </div>
+
+  <h3>📈 Data Quality Checklist</h3>
+  <div style="background: #f0fff4; border: 2px solid #48bb78; border-radius: 8px; padding: 1.5rem; margin: 1rem 0;">
+    <h4 style="color: #2f855a;">✅ Our Dataset Quality Score:</h4>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin: 1rem 0;">
+      <div style="color: #2f855a;">
+        <strong>✅ Large Size:</strong> 25,000 images<br>
+        <strong>✅ Balanced:</strong> 50% cats, 50% dogs<br>
+        <strong>✅ High Quality:</strong> Clear, well-lit photos<br>
+        <strong>✅ Variety:</strong> Multiple breeds and poses
+      </div>
+      <div style="color: #2f855a;">
+        <strong>✅ Labeled:</strong> All images correctly classified<br>
+        <strong>✅ Clean:</strong> No corrupted or mislabeled files<br>
+        <strong>✅ Split:</strong> Separate train/validation sets<br>
+        <strong>✅ Real-world:</strong> Diverse photography styles
+      </div>
+    </div>
+    
+    <div style="background: rgba(72, 187, 120, 0.1); padding: 1rem; border-radius: 8px; margin-top: 1rem; text-align: center;">
+      <p style="color: #2f855a; margin: 0; font-size: 1.1rem;">
+        <strong>🏆 Overall Grade: A+ (Excellent for AI training!)</strong>
+      </p>
+    </div>
+  </div>
+
+  <h3>🎯 What You've Learned</h3>
+  <div style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 2rem; border-radius: 12px; margin: 2rem 0;">
+    <h4 style="color: white; margin-bottom: 1rem;">🧠 Data Science Concepts Mastered:</h4>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; color: white;">
+      <div>
+        ✅ <strong>Dataset exploration</strong> and structure analysis<br>
+        ✅ <strong>Data quality assessment</strong> techniques<br>
+        ✅ <strong>Statistical analysis</strong> of image properties
+      </div>
+      <div>
+        ✅ <strong>Data visualization</strong> with Python<br>
+        ✅ <strong>File handling</strong> and directory navigation<br>
+        ✅ <strong>Preprocessing planning</strong> for AI training
+      </div>
+    </div>
+    
+    <div style="background: rgba(255, 255, 255, 0.2); padding: 1rem; border-radius: 8px; margin-top: 1rem; text-align: center;">
+      <p style="color: white; margin: 0; font-size: 1.1rem;">
+        <strong>🔬 You now think like a data scientist!</strong>
+      </p>
+    </div>
+  </div>
+
+  <div style="background: #f0fff4; border: 2px solid #48bb78; border-radius: 8px; padding: 1.5rem; margin: 2rem 0; text-align: center;">
+    <h4 style="color: #2f855a; margin-bottom: 1rem;">🎉 Data Exploration Complete!</h4>
+    <p style="color: #2f855a; margin: 0; font-size: 1.1rem;">
+      We know our data inside and out! 📊<br>
+      <strong>Time to build our AI model!</strong>
+    </p>
+  </div>
+
+  <div class="progress-bar">
+    <div class="progress-fill" style="width: 40%;"></div>
+  </div>
+
+  <button class="next-btn" onclick="nextLesson()">
+    Data Ready! Let's Build Our AI Model →
+  </button>
+</div>
+
+<!-- Building the Model Lesson - Add this to catvsdog.html -->
+<div id="model" class="lesson-content" style="display: none">
+  <h2>🤖 Building the Model</h2>
+  
+  <div style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 1rem; border-radius: 8px; margin-bottom: 2rem;">
+    <strong>🎯 Goal:</strong> Build a powerful AI brain for image recognition<br>
+    <strong>⏱️ Time:</strong> 20-25 minutes<br>
+    <strong>🧠 Model:</strong> Convolutional Neural Network (CNN)
+  </div>
+
+  <h3>🏗️ What We're Building: A CNN</h3>
+  <div style="background: #f8f9ff; border: 2px solid #667eea; border-radius: 12px; padding: 1.5rem; margin: 1.5rem 0;">
+    <p><strong>Think of our CNN as a team of specialists working together:</strong></p>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin: 1rem 0;">
+      <div style="text-align: center; background: white; padding: 1rem; border-radius: 8px;">
+        <div style="font-size: 2rem; margin-bottom: 0.5rem;">👁️</div>
+        <h4>Input Layer</h4>
+        <p>Receives the 150x150 pixel image</p>
+      </div>
+      
+      <div style="text-align: center; background: white; padding: 1rem; border-radius: 8px;">
+        <div style="font-size: 2rem; margin-bottom: 0.5rem;">🔍</div>
+        <h4>Convolutional Layers</h4>
+        <p>Detect edges, patterns, textures</p>
+      </div>
+      
+      <div style="text-align: center; background: white; padding: 1rem; border-radius: 8px;">
+        <div style="font-size: 2rem; margin-bottom: 0.5rem;">📏</div>
+        <h4>Pooling Layers</h4>
+        <p>Reduce size, keep important features</p>
+      </div>
+      
+      <div style="text-align: center; background: white; padding: 1rem; border-radius: 8px;">
+        <div style="font-size: 2rem; margin-bottom: 0.5rem;">🧠</div>
+        <h4>Dense Layers</h4>
+        <p>Make the final cat vs dog decision</p>
+      </div>
+    </div>
+  </div>
+
+  <h3>🎨 Step 1: Design Our Architecture</h3>
+  <div style="background: #f0fff4; border-radius: 8px; padding: 1.5rem; margin: 1rem 0;">
+    <p><strong>Let's plan our CNN architecture visually:</strong></p>
+    
+    <div style="background: white; border: 2px solid #48bb78; border-radius: 8px; padding: 1.5rem; margin: 1rem 0;">
+      <div style="font-family: monospace; background: #f8f9fa; padding: 1rem; border-radius: 4px;">
+        <strong>🏗️ Our CNN Architecture:</strong><br><br>
+        Input (150x150x3) → <span style="color: #e53e3e;">Conv2D(32)</span> → <span style="color: #f56500;">MaxPool</span> → <br>
+        <span style="color: #e53e3e;">Conv2D(64)</span> → <span style="color: #f56500;">MaxPool</span> → <br>
+        <span style="color: #e53e3e;">Conv2D(128)</span> → <span style="color: #f56500;">MaxPool</span> → <br>
+        <span style="color: #38a169;">Flatten</span> → <span style="color: #4299e1;">Dense(512)</span> → <span style="color: #7c3aed;">Dense(1)</span> → Output
+      </div>
+    </div>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin: 1rem 0;">
+      <div style="background: white; border-left: 4px solid #e53e3e; padding: 1rem; border-radius: 8px;">
+        <h4 style="color: #e53e3e;">🔍 Convolutional Layers</h4>
+        <p>32 → 64 → 128 filters. Each layer detects more complex features!</p>
+      </div>
+      
+      <div style="background: white; border-left: 4px solid #f56500; padding: 1rem; border-radius: 8px;">
+        <h4 style="color: #f56500;">📏 Pooling Layers</h4>
+        <p>Reduce image size by half each time while keeping important info</p>
+      </div>
+      
+      <div style="background: white; border-left: 4px solid #4299e1; padding: 1rem; border-radius: 8px;">
+        <h4 style="color: #4299e1;">🧠 Dense Layers</h4>
+        <p>512 neurons → 1 neuron. The "thinking" part of our AI!</p>
+      </div>
+    </div>
+  </div>
+
+  <h3>💻 Step 2: Code Our Model</h3>
+  <div style="background: #fff7ed; border-radius: 8px; padding: 1.5rem; margin: 1rem 0;">
+    <p><strong>Time to build! Create a new file: <code>build_model.py</code></strong></p>
+    
+    <div class="code-block">
+import tensorflow as tf<br>
+from tensorflow.keras import layers, models<br>
+import matplotlib.pyplot as plt<br>
+<br>
+print("🤖 Building our Cat vs Dog CNN model...")<br>
+<br>
+# Create the model<br>
+model = models.Sequential([<br>
+    # Input layer - images will be 150x150 pixels with 3 color channels (RGB)<br>
+    layers.Input(shape=(150, 150, 3)),<br>
+    <br>
+    # First convolutional block<br>
+    layers.Conv2D(32, (3, 3), activation='relu'),<br>
+    layers.MaxPooling2D(2, 2),<br>
+    <br>
+    # Second convolutional block<br>
+    layers.Conv2D(64, (3, 3), activation='relu'),<br>
+    layers.MaxPooling2D(2, 2),<br>
+    <br>
+    # Third convolutional block<br>
+    layers.Conv2D(128, (3, 3), activation='relu'),<br>
+    layers.MaxPooling2D(2, 2),<br>
+    <br>
+    # Flatten the 3D output to 1D<br>
+    layers.Flatten(),<br>
+    <br>
+    # Dense layers for classification<br>
+    layers.Dense(512, activation='relu'),<br>
+    layers.Dropout(0.5),  # Prevent overfitting<br>
+    layers.Dense(1, activation='sigmoid')  # Binary output: cat (0) or dog (1)<br>
+])<br>
+<br>
+print("✅ Model architecture created!")<br>
+<br>
+# Display model summary<br>
+print("\n📊 Model Summary:")<br>
+model.summary()
+    </div>
+    
+    <div style="background: #e6fffa; border: 2px solid #38b2ac; padding: 1rem; margin: 1rem 0;">
+      <h4>🔍 Code Breakdown:</h4>
+      <ul>
+        <li><strong>Conv2D(32, (3,3)):</strong> 32 filters, each 3x3 pixels, look for patterns</li>
+        <li><strong>MaxPooling2D(2,2):</strong> Keep the strongest signals, reduce size</li>
+        <li><strong>activation='relu':</strong> Makes the network learn complex patterns</li>
+        <li><strong>Dropout(0.5):</strong> Randomly turns off 50% of neurons to prevent memorization</li>
+        <li><strong>sigmoid:</strong> Outputs a number between 0 and 1 (cat vs dog probability)</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>📊 Step 3: Visualize the Architecture</h3>
+  <div style="background: #fef7ff; border-radius: 8px; padding: 1.5rem; margin: 1rem 0;">
+    <p><strong>Let's see our model visually! Add this to your code:</strong></p>
+    
+    <div class="code-block">
+# Visualize the model architecture<br>
+tf.keras.utils.plot_model(<br>
+    model, <br>
+    to_file='model_architecture.png',<br>
+    show_shapes=True,<br>
+    show_layer_names=True,<br>
+    rankdir='TB'<br>
+)<br>
+<br>
+print("🎨 Model diagram saved as 'model_architecture.png'")<br>
+<br>
+# Let's also create a custom visualization<br>
+def visualize_model_layers():<br>
+    print("\n🏗️ Layer by Layer Breakdown:")<br>
+    print("=" * 50)<br>
+    <br>
+    for i, layer in enumerate(model.layers):<br>
+        layer_type = layer.__class__.__name__<br>
+        <br>
+        if hasattr(layer, 'output_shape'):<br>
+            output_shape = layer.output_shape<br>
+        else:<br>
+            output_shape = "Variable"<br>
+            <br>
+        if layer_type == 'Conv2D':<br>
+            filters = layer.filters<br>
+            kernel_size = layer.kernel_size<br>
+            print(f"🔍 Layer {i+1}: {layer_type} - {filters} filters ({kernel_size[0]}x{kernel_size[1]}) → {output_shape}")<br>
+        elif layer_type == 'MaxPooling2D':<br>
+            pool_size = layer.pool_size<br>
+            print(f"📏 Layer {i+1}: {layer_type} - Pool size {pool_size} → {output_shape}")<br>
+        elif layer_type == 'Dense':<br>
+            units = layer.units<br>
+            activation = layer.activation.__name__<br>
+            print(f"🧠 Layer {i+1}: {layer_type} - {units} neurons ({activation}) → {output_shape}")<br>
+        else:<br>
+            print(f"⚙️ Layer {i+1}: {layer_type} → {output_shape}")<br>
+    <br>
+    print("=" * 50)<br>
+<br>
+visualize_model_layers()
+    </div>
+  </div>
+
+  <h3>⚙️ Step 4: Compile the Model</h3>
+  <div style="background: #f7fafc; border-radius: 8px; padding: 1.5rem; margin: 1rem 0;">
+    <p><strong>Now we need to configure how our model will learn:</strong></p>
+    
+    <div class="code-block">
+# Compile the model<br>
+model.compile(<br>
+    optimizer='adam',                    # How the model updates its weights<br>
+    loss='binary_crossentropy',          # How we measure prediction errors<br>
+    metrics=['accuracy']                 # What we want to track during training<br>
+)<br>
+<br>
+print("⚙️ Model compiled and ready for training!")<br>
+print("\n🎯 Model Configuration:")<br>
+print(f"   Optimizer: Adam (adaptive learning rate)")<br>
+print(f"   Loss Function: Binary Crossentropy (perfect for cat vs dog)")<br>
+print(f"   Metrics: Accuracy (% of correct predictions)")<br>
+<br>
+# Count total parameters<br>
+total_params = model.count_params()<br>
+print(f"\n🔢 Total Parameters: {total_params:,}")<br>
+print(f"   This is how many 'knobs' our AI has to adjust during learning!")
+    </div>
+    
+    <div style="background: #f8f9ff; border: 2px solid #667eea; padding: 1rem; margin: 1rem 0;">
+      <h4>🎓 Why These Choices?</h4>
+      <ul>
+        <li><strong>Adam Optimizer:</strong> Smart about learning - speeds up in good directions, slows down when confused</li>
+        <li><strong>Binary Crossentropy:</strong> Perfect for "this or that" problems (cat or dog)</li>
+        <li><strong>Accuracy Metric:</strong> Easy to understand - what % did we get right?</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>🔬 Step 5: Understanding Model Parameters</h3>
+  <div style="background: #fff7ed; border-radius: 8px; padding: 1.5rem; margin: 1rem 0;">
+    <p><strong>Let's explore what those millions of parameters actually do:</strong></p>
+    
+    <div class="code-block">
+# Detailed parameter analysis<br>
+print("\n🔍 Parameter Breakdown by Layer:")<br>
+print("=" * 60)<br>
+<br>
+total_trainable = 0<br>
+<br>
+for i, layer in enumerate(model.layers):<br>
+    layer_params = layer.count_params()<br>
+    total_trainable += layer_params<br>
+    <br>
+    layer_name = layer.__class__.__name__<br>
+    print(f"{layer_name:15} | Parameters: {layer_params:>10,}")<br>
+    <br>
+    # Explain what each layer learns<br>
+    if layer_name == 'Conv2D':<br>
+        if hasattr(layer, 'filters'):<br>
+            filters = layer.filters<br>
+            if filters == 32:<br>
+                print(f"{'':15} | → Learns basic edges and shapes")<br>
+            elif filters == 64:<br>
+                print(f"{'':15} | → Learns textures and patterns")<br>
+            elif filters == 128:<br>
+                print(f"{'':15} | → Learns complex features (eyes, ears, fur)")<br>
+    elif layer_name == 'Dense' and layer.units == 512:<br>
+        print(f"{'':15} | → Combines features to understand 'catness' vs 'dogness'")<br>
+    elif layer_name == 'Dense' and layer.units == 1:<br>
+        print(f"{'':15} | → Final decision: Cat (0) or Dog (1)")<br>
+    <br>
+print("=" * 60)<br>
+print(f"Total Trainable Parameters: {total_trainable:,}")<br>
+<br>
+# Memory estimation<br>
+memory_mb = (total_trainable * 4) / (1024 * 1024)  # 4 bytes per parameter<br>
+print(f"\n💾 Estimated Model Size: {memory_mb:.1f} MB")<br>
+print(f"   (This will easily fit on any modern device!)")
+    </div>
+  </div>
+
+  <h3>🎯 Step 6: Test Model with Random Data</h3>
+  <div style="background: #f0fff4; border-radius: 8px; padding: 1.5rem; margin: 1rem 0;">
+    <p><strong>Let's verify our model works with a quick test:</strong></p>
+    
+    <div class="code-block">
+import numpy as np<br>
+<br>
+# Create fake image data to test our model<br>
+print("\n🧪 Testing model with random data...")<br>
+<br>
+# Create a batch of 5 fake images (150x150x3)<br>
+fake_images = np.random.random((5, 150, 150, 3))<br>
+print(f"Fake image batch shape: {fake_images.shape}")<br>
+<br>
+# Make predictions (before training - should be random!)<br>
+predictions = model.predict(fake_images, verbose=0)<br>
+<br>
+print("\n🔮 Predictions on random data (before training):")<br>
+for i, pred in enumerate(predictions):<br>
+    probability = pred[0]<br>
+    if probability > 0.5:<br>
+        animal = "Dog"<br>
+        confidence = probability * 100<br>
+    else:<br>
+        animal = "Cat"<br>
+        confidence = (1 - probability) * 100<br>
+    <br>
+    print(f"   Image {i+1}: {animal} ({confidence:.1f}% confidence)")<br>
+<br>
+print("\n💡 Note: These predictions are random because our model hasn't learned anything yet!")<br>
+print("   After training, it will make much more confident and accurate predictions.")
+    </div>
+  </div>
+
+  <h3>🚀 Transfer Learning Alternative</h3>
+  <div style="background: #fef7ff; border-radius: 8px; padding: 1.5rem; margin: 1rem 0;">
+    <p><strong>Pro tip: We could also use a pre-trained model! Here's how:</strong></p>
+    
+    <div class="code-block">
+# Alternative: Using a pre-trained model (Transfer Learning)<br>
+print("\n🎓 Advanced Option: Transfer Learning")<br>
+print("Instead of training from scratch, we could use a model that Google already trained!")<br>
+<br>
+def create_transfer_learning_model():<br>
+    # Load a pre-trained model (trained on millions of images)<br>
+    base_model = tf.keras.applications.MobileNetV2(<br>
+        input_shape=(150, 150, 3),<br>
+        include_top=False,  # Remove the top classification layer<br>
+        weights='imagenet'  # Use weights trained on ImageNet<br>
+    )<br>
+    <br>
+    # Freeze the base model (don't change its weights)<br>
+    base_model.trainable = False<br>
+    <br>
+    # Add our own classification layers on top<br>
+    transfer_model = models.Sequential([<br>
+        base_model,<br>
+        layers.GlobalAveragePooling2D(),<br>
+        layers.Dropout(0.2),<br>
+        layers.Dense(1, activation='sigmoid')<br>
+    ])<br>
+    <br>
+    return transfer_model<br>
+<br>
+print("📈 Transfer Learning Benefits:")<br>
+print("   ✅ Trains much faster")<br>
+print("   ✅ Often more accurate")<br>
+print("   ✅ Needs less data")<br>
+print("   ✅ Uses Google's expertise")<br>
+<br>
+print("\n🎯 For this tutorial, we'll use our custom model to understand how CNNs work from scratch!")
+    </div>
+    
+    <div style="background: #e6fffa; border: 2px solid #38b2ac; padding: 1rem; margin: 1rem 0;">
+      <h4>🤔 Custom Model vs Transfer Learning:</h4>
+      <ul>
+        <li><strong>Custom Model:</strong> Learn how CNNs work, full control, educational</li>
+        <li><strong>Transfer Learning:</strong> Faster, often better results, industry standard</li>
+        <li><strong>Our Choice:</strong> Custom model first to understand the concepts!</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>🎯 Model Architecture Summary</h3>
+  <div style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 2rem; border-radius: 12px; margin: 2rem 0;">
+    <h4 style="color: white; margin-bottom: 1rem;">🏗️ What We Built:</h4>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; color: white;">
+      <div>
+        🔍 <strong>3 Convolutional Blocks</strong><br>
+        📏 <strong>3 Pooling Layers</strong><br>
+        🧠 <strong>2 Dense Layers</strong>
+      </div>
+      <div>
+        🎯 <strong>Binary Classification</strong><br>
+        ⚙️ <strong>~2.3M Parameters</strong><br>
+        💾 <strong>~9MB Model Size</strong>
+      </div>
+    </div>
+    
+    <div style="background: rgba(255, 255, 255, 0.2); padding: 1rem; border-radius: 8px; margin-top: 1rem;">
+      <h4 style="color: white;">🧠 How It Thinks:</h4>
+      <p style="color: white; margin: 0;">
+        <strong>Input Image → Find Edges → Detect Patterns → Recognize Features → Make Decision</strong>
+      </p>
+    </div>
+  </div>
+
+  <h3>🎓 What You've Mastered</h3>
+  <div style="background: #f0fff4; border: 2px solid #48bb78; border-radius: 8px; padding: 1.5rem; margin: 1rem 0;">
+    <h4 style="color: #2f855a;">🏆 Neural Network Concepts:</h4>
+    
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin: 1rem 0;">
+      <div style="color: #2f855a;">
+        ✅ <strong>CNN Architecture</strong> design<br>
+        ✅ <strong>Layer Types</strong> and their purposes<br>
+        ✅ <strong>Activation Functions</strong> (ReLU, Sigmoid)<br>
+        ✅ <strong>Model Compilation</strong> setup
+      </div>
+      <div style="color: #2f855a;">
+        ✅ <strong>Parameter Counting</strong> and analysis<br>
+        ✅ <strong>Overfitting Prevention</strong> (Dropout)<br>
+        ✅ <strong>Transfer Learning</strong> concepts<br>
+        ✅ <strong>Model Visualization</strong> techniques
+      </div>
+    </div>
+    
+    <div style="background: rgba(72, 187, 120, 0.1); padding: 1rem; border-radius: 8px; margin-top: 1rem; text-align: center;">
+      <p style="color: #2f855a; margin: 0; font-size: 1.1rem;">
+        <strong>🚀 You now understand how modern AI sees and thinks!</strong>
+      </p>
+    </div>
+  </div>
+
+  <div style="background: #f0fff4; border: 2px solid #48bb78; border-radius: 8px; padding: 1.5rem; margin: 2rem 0; text-align: center;">
+    <h4 style="color: #2f855a; margin-bottom: 1rem;">🎉 Model Architecture Complete!</h4>
+    <p style="color: #2f855a; margin: 0; font-size: 1.1rem;">
+      Our AI brain is built and ready! 🤖<br>
+      <strong>Time to teach it to recognize cats and dogs!</strong>
+    </p>
+  </div>
+
+  <div class="progress-bar">
+    <div class="progress-fill" style="width: 50%;"></div>
+  </div>
+
+  <button class="next-btn" onclick="window.location.href='catvsdog2.html'">
+    Model Ready! Let's Train Our AI →
+  </button>
+</div>
+
+        <div id="training" class="lesson-content">
+          <h2>🏋️ Training the Model</h2>
+
+          <div
+            style="
+              background: linear-gradient(135deg, #667eea, #764ba2);
+              color: white;
+              padding: 1rem;
+              border-radius: 8px;
+              margin-bottom: 2rem;
+            "
+          >
+            <strong>🎯 Goal:</strong> Teach our AI to recognize cats and dogs<br />
+            <strong>⏱️ Time:</strong> 25-30 minutes<br />
+            <strong>🎓 Process:</strong> Show thousands of examples and let it
+            learn!
+          </div>
+
+          <h3>🧠 How AI Learning Works</h3>
+          <div
+            style="
+              background: #f8f9ff;
+              border: 2px solid #667eea;
+              border-radius: 12px;
+              padding: 1.5rem;
+              margin: 1.5rem 0;
+            "
+          >
+            <p>
+              <strong
+                >Training is like teaching a child with flashcards:</strong
+              >
+            </p>
+
+            <div
+              style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 1rem;
+                margin: 1rem 0;
+              "
+            >
+              <div
+                style="
+                  text-align: center;
+                  background: white;
+                  padding: 1rem;
+                  border-radius: 8px;
+                "
+              >
+                <div style="font-size: 2rem; margin-bottom: 0.5rem">📸</div>
+                <h4>Show Image</h4>
+                <p>"Here's a picture"</p>
+              </div>
+
+              <div
+                style="
+                  text-align: center;
+                  background: white;
+                  padding: 1rem;
+                  border-radius: 8px;
+                "
+              >
+                <div style="font-size: 2rem; margin-bottom: 0.5rem">🤔</div>
+                <h4>AI Guesses</h4>
+                <p>"I think it's a dog"</p>
+              </div>
+
+              <div
+                style="
+                  text-align: center;
+                  background: white;
+                  padding: 1rem;
+                  border-radius: 8px;
+                "
+              >
+                <div style="font-size: 2rem; margin-bottom: 0.5rem">✅</div>
+                <h4>Tell Truth</h4>
+                <p>"Correct! It is a dog"</p>
+              </div>
+
+              <div
+                style="
+                  text-align: center;
+                  background: white;
+                  padding: 1rem;
+                  border-radius: 8px;
+                "
+              >
+                <div style="font-size: 2rem; margin-bottom: 0.5rem">🎯</div>
+                <h4>AI Adjusts</h4>
+                <p>"I'll remember this pattern"</p>
+              </div>
+            </div>
+
+            <div
+              style="
+                background: rgba(102, 126, 234, 0.1);
+                padding: 1rem;
+                border-radius: 8px;
+                margin-top: 1rem;
+              "
+            >
+              <p>
+                <strong
+                  >🔄 Repeat this process 20,000 times and the AI becomes an
+                  expert!</strong
+                >
+              </p>
+            </div>
+          </div>
+
+          <h3>📊 Step 1: Prepare the Data</h3>
+          <div
+            style="
+              background: #f0fff4;
+              border-radius: 8px;
+              padding: 1.5rem;
+              margin: 1rem 0;
+            "
+          >
+            <p>
+              <strong
+                >First, let's set up our data pipeline. Create:
+                <code>prepare_training_data.py</code></strong
+              >
+            </p>
+
+            <div class="code-block">
+              import tensorflow as tf<br />
+              import os<br />
+              from tensorflow.keras.preprocessing.image import
+              ImageDataGenerator<br />
+              <br />
+              print("📊 Preparing training data...")<br />
+              <br />
+              # Set up directories<br />
+              base_dir =
+              os.path.expanduser('~/.keras/datasets/cats_and_dogs_filtered')<br />
+              train_dir = os.path.join(base_dir, 'train')<br />
+              validation_dir = os.path.join(base_dir, 'validation')<br />
+              <br />
+              print(f"Training directory: {train_dir}")<br />
+              print(f"Validation directory: {validation_dir}")<br />
+              <br />
+              # Create data generators with augmentation<br />
+              train_datagen = ImageDataGenerator(<br />
+              rescale=1./255, # Normalize pixel values to 0-1<br />
+              rotation_range=20, # Randomly rotate images<br />
+              width_shift_range=0.2, # Randomly shift images horizontally<br />
+              height_shift_range=0.2, # Randomly shift images vertically<br />
+              shear_range=0.2, # Apply random shear transformations<br />
+              zoom_range=0.2, # Randomly zoom in/out<br />
+              horizontal_flip=True, # Randomly flip images horizontally<br />
+              fill_mode='nearest' # Fill pixels after transformations<br />
+              )<br />
+              <br />
+              # Validation data should only be normalized (no augmentation)<br />
+              validation_datagen = ImageDataGenerator(rescale=1./255)<br />
+              <br />
+              # Generate batches of training data<br />
+              train_generator = train_datagen.flow_from_directory(<br />
+              train_dir,<br />
+              target_size=(150, 150), # Resize all images to 150x150<br />
+              batch_size=32, # Process 32 images at a time<br />
+              class_mode='binary' # Binary classification (cat=0, dog=1)<br />
+              )<br />
+              <br />
+              # Generate batches of validation data<br />
+              validation_generator = validation_datagen.flow_from_directory(<br />
+              validation_dir,<br />
+              target_size=(150, 150),<br />
+              batch_size=32,<br />
+              class_mode='binary'<br />
+              )<br />
+              <br />
+              print(f"✅ Found {train_generator.samples} training images")<br />
+              print(f"✅ Found {validation_generator.samples} validation
+              images")<br />
+              print(f"📂 Classes: {train_generator.class_indices}")
+            </div>
+
+            <div
+              style="
+                background: #e6fffa;
+                border: 2px solid #38b2ac;
+                padding: 1rem;
+                margin: 1rem 0;
+              "
+            >
+              <h4>🎨 Data Augmentation Magic:</h4>
+              <ul>
+                <li>
+                  <strong>Rotation:</strong> Teaches AI that cats can be tilted
+                </li>
+                <li>
+                  <strong>Shifts & Zoom:</strong> Cats/dogs can be in different
+                  positions
+                </li>
+                <li>
+                  <strong>Horizontal Flip:</strong> Cats look the same from both
+                  sides
+                </li>
+                <li>
+                  <strong>Result:</strong> From 20k images, we get effectively
+                  100k+ variations!
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <h3>🏋️ Step 2: Train the Model</h3>
+          <div
+            style="
+              background: #fff7ed;
+              border-radius: 8px;
+              padding: 1.5rem;
+              margin: 1rem 0;
+            "
+          >
+            <p>
+              <strong
+                >Time for the main event! Create:
+                <code>train_model.py</code></strong
+              >
+            </p>
+
+            <div class="code-block">
+              import tensorflow as tf<br />
+              from tensorflow.keras import layers, models<br />
+              import matplotlib.pyplot as plt<br />
+              <br />
+              # Recreate our model (or load from previous script)<br />
+              model = models.Sequential([<br />
+              layers.Input(shape=(150, 150, 3)),<br />
+              layers.Conv2D(32, (3, 3), activation='relu'),<br />
+              layers.MaxPooling2D(2, 2),<br />
+              layers.Conv2D(64, (3, 3), activation='relu'),<br />
+              layers.MaxPooling2D(2, 2),<br />
+              layers.Conv2D(128, (3, 3), activation='relu'),<br />
+              layers.MaxPooling2D(2, 2),<br />
+              layers.Flatten(),<br />
+              layers.Dense(512, activation='relu'),<br />
+              layers.Dropout(0.5),<br />
+              layers.Dense(1, activation='sigmoid')<br />
+              ])<br />
+              <br />
+              model.compile(<br />
+              optimizer='adam',<br />
+              loss='binary_crossentropy',<br />
+              metrics=['accuracy']<br />
+              )<br />
+              <br />
+              print("🚀 Starting training...")<br />
+              print("This will take 10-15 minutes depending on your
+              computer")<br />
+              print("☕ Perfect time for a coffee break!")<br />
+              <br />
+              # Train the model<br />
+              history = model.fit(<br />
+              train_generator,<br />
+              steps_per_epoch=100, # How many batches per epoch<br />
+              epochs=15, # How many times to see all data<br />
+              validation_data=validation_generator,<br />
+              validation_steps=50, # How many validation batches<br />
+              verbose=1 # Show progress<br />
+              )<br />
+              <br />
+              print("🎉 Training completed!")<br />
+              <br />
+              # Save the trained model<br />
+              model.save('cat_dog_classifier.h5')<br />
+              print("💾 Model saved as 'cat_dog_classifier.h5'")
+            </div>
+
+            <div
+              style="
+                background: #fff7ed;
+                border: 2px solid #f97316;
+                padding: 1rem;
+                margin: 1rem 0;
+              "
+            >
+              <h4>⏰ Training Time Expectations:</h4>
+              <ul>
+                <li><strong>Fast Computer:</strong> 8-12 minutes</li>
+                <li><strong>Average Computer:</strong> 15-20 minutes</li>
+                <li><strong>Older Computer:</strong> 25-30 minutes</li>
+                <li>
+                  <strong>Perfect for:</strong> Grab coffee, check email,
+                  stretch! ☕
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <h3>📈 Step 3: Visualize Training Progress</h3>
+          <div
+            style="
+              background: #fef7ff;
+              border-radius: 8px;
+              padding: 1.5rem;
+              margin: 1rem 0;
+            "
+          >
+            <p>
+              <strong
+                >Let's see how our AI learned! Add this to your training
+                script:</strong
+              >
+            </p>
+
+            <div class="code-block">
+              # Plot training history<br />
+              def plot_training_history(history):<br />
+              acc = history.history['accuracy']<br />
+              val_acc = history.history['val_accuracy']<br />
+              loss = history.history['loss']<br />
+              val_loss = history.history['val_loss']<br />
+              <br />
+              epochs = range(len(acc))<br />
+              <br />
+              # Create subplots<br />
+              fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 4))<br />
+              <br />
+              # Plot accuracy<br />
+              ax1.plot(epochs, acc, 'bo-', label='Training Accuracy')<br />
+              ax1.plot(epochs, val_acc, 'ro-', label='Validation Accuracy')<br />
+              ax1.set_title('📈 Training and Validation Accuracy')<br />
+              ax1.set_xlabel('Epochs')<br />
+              ax1.set_ylabel('Accuracy')<br />
+              ax1.legend()<br />
+              ax1.grid(True)<br />
+              <br />
+              # Plot loss<br />
+              ax2.plot(epochs, loss, 'bo-', label='Training Loss')<br />
+              ax2.plot(epochs, val_loss, 'ro-', label='Validation Loss')<br />
+              ax2.set_title('📉 Training and Validation Loss')<br />
+              ax2.set_xlabel('Epochs')<br />
+              ax2.set_ylabel('Loss')<br />
+              ax2.legend()<br />
+              ax2.grid(True)<br />
+              <br />
+              plt.tight_layout()<br />
+              plt.savefig('training_history.png', dpi=300,
+              bbox_inches='tight')<br />
+              plt.show()<br />
+              <br />
+              # Print final results<br />
+              final_acc = val_acc[-1]<br />
+              final_loss = val_loss[-1]<br />
+              <br />
+              print(f"\n🎯 Final Results:")<br />
+              print(f" Training Accuracy: {acc[-1]:.1%}")<br />
+              print(f" Validation Accuracy: {final_acc:.1%}")<br />
+              print(f" Validation Loss: {final_loss:.3f}")<br />
+              <br />
+              if final_acc > 0.85:<br />
+              print("🏆 Excellent! Your model is performing great!")<br />
+              elif final_acc > 0.75:<br />
+              print("👍 Good performance! Ready for real-world testing.")<br />
+              else:<br />
+              print("📚 Model needs more training or data.")<br />
+              <br />
+              # Generate the plots<br />
+              plot_training_history(history)
+            </div>
+          </div>
+
+          <h3>🎯 Understanding Training Metrics</h3>
+          <div
+            style="
+              background: #f7fafc;
+              border-radius: 8px;
+              padding: 1.5rem;
+              margin: 1rem 0;
+            "
+          >
+            <h4>📊 What the Numbers Mean:</h4>
+
+            <div
+              style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 1rem;
+                margin: 1rem 0;
+              "
+            >
+              <div
+                style="
+                  background: white;
+                  border-left: 4px solid #4299e1;
+                  padding: 1rem;
+                  border-radius: 8px;
+                "
+              >
+                <h4 style="color: #2563eb">📈 Accuracy</h4>
+                <p>
+                  <strong>85%+ = Excellent</strong><br />
+                  75-85% = Good<br />
+                  60-75% = Okay<br />
+                  <50% = Needs work
+                </p>
+              </div>
+
+              <div
+                style="
+                  background: white;
+                  border-left: 4px solid #e53e3e;
+                  padding: 1rem;
+                  border-radius: 8px;
+                "
+              >
+                <h4 style="color: #dc2626">📉 Loss</h4>
+                <p>
+                  <strong>Lower = Better</strong><br />
+                  Should decrease over time<br />
+                  Measures prediction errors<br />
+                  Target: < 0.5
+                </p>
+              </div>
+
+              <div
+                style="
+                  background: white;
+                  border-left: 4px solid #38a169;
+                  padding: 1rem;
+                  border-radius: 8px;
+                "
+              >
+                <h4 style="color: #059669">🎯 Validation</h4>
+                <p>
+                  <strong>Real performance test</strong><br />
+                  Uses unseen data<br />
+                  Should track training<br />
+                  Prevents overfitting
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <h3>🐛 Troubleshooting Common Issues</h3>
+          <div
+            style="
+              background: #fed7d7;
+              border-radius: 8px;
+              padding: 1.5rem;
+              margin: 1rem 0;
+            "
+          >
+            <div style="margin-bottom: 1.5rem">
+              <h4>❌ "Out of Memory" Error</h4>
+              <p><strong>Solutions:</strong></p>
+              <ul>
+                <li>Reduce batch_size from 32 to 16 or 8</li>
+                <li>Close other applications</li>
+                <li>Restart your computer and try again</li>
+              </ul>
+            </div>
+
+            <div style="margin-bottom: 1.5rem">
+              <h4>❌ Very Slow Training</h4>
+              <p><strong>Solutions:</strong></p>
+              <ul>
+                <li>Reduce epochs from 15 to 10</li>
+                <li>Reduce steps_per_epoch from 100 to 50</li>
+                <li>Consider using Google Colab for GPU power</li>
+              </ul>
+            </div>
+
+            <div style="margin-bottom: 1.5rem">
+              <h4>❌ Accuracy Stuck Around 50%</h4>
+              <p><strong>Solutions:</strong></p>
+              <ul>
+                <li>Check that data is loading correctly</li>
+                <li>Verify class_indices shows cats:0, dogs:1</li>
+                <li>Try training for more epochs (20-25)</li>
+              </ul>
+            </div>
+          </div>
+
+          <h3>🎉 Training Complete!</h3>
+          <div
+            style="
+              background: linear-gradient(135deg, #48bb78, #38a169);
+              color: white;
+              padding: 2rem;
+              border-radius: 12px;
+              margin: 2rem 0;
+            "
+          >
+            <h4 style="color: white; margin-bottom: 1rem">
+              🏆 Congratulations! You've trained an AI!
+            </h4>
+
+            <div
+              style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 1rem;
+                color: white;
+              "
+            >
+              <div>
+                🧠 <strong>AI Brain Created</strong><br />
+                📊 <strong>20,000+ Examples Learned</strong><br />
+                🎯 <strong>85%+ Accuracy Achieved</strong>
+              </div>
+              <div>
+                💾 <strong>Model Saved</strong><br />
+                📈 <strong>Progress Visualized</strong><br />
+                🚀 <strong>Ready for Testing</strong>
+              </div>
+            </div>
+
+            <div
+              style="
+                background: rgba(255, 255, 255, 0.2);
+                padding: 1rem;
+                border-radius: 8px;
+                margin-top: 1rem;
+                text-align: center;
+              "
+            >
+              <p style="color: white; margin: 0; font-size: 1.1rem">
+                <strong>🎓 Your AI now thinks like a pet expert!</strong>
+              </p>
+            </div>
+          </div>
+
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 60%"></div>
+          </div>
+
+          <button class="next-btn" onclick="nextLesson()">
+            Training Complete! Let's Test Our AI →
+          </button>
+        </div>
+
+        <!-- Making Predictions -->
+        <div id="prediction" class="lesson-content" style="display: none">
+          <h2>🔮 Making Predictions</h2>
+
+          <div
+            style="
+              background: linear-gradient(135deg, #667eea, #764ba2);
+              color: white;
+              padding: 1rem;
+              border-radius: 8px;
+              margin-bottom: 2rem;
+            "
+          >
+            <strong>🎯 Goal:</strong> Test our trained AI with real images<br />
+            <strong>⏱️ Time:</strong> 15-20 minutes<br />
+            <strong>🎉 Moment of Truth:</strong> See if our AI really works!
+          </div>
+
+          <p><strong>Content coming in the next update...</strong></p>
+
+          <button class="next-btn" onclick="nextLesson()">
+            Continue to Web App →
+          </button>
+        </div>
+
+        <!-- Building Web App -->
+        <div id="app" class="lesson-content" style="display: none">
+          <h2>💻 Building the Web App</h2>
+
+          <div
+            style="
+              background: linear-gradient(135deg, #667eea, #764ba2);
+              color: white;
+              padding: 1rem;
+              border-radius: 8px;
+              margin-bottom: 2rem;
+            "
+          >
+            <strong>🎯 Goal:</strong> Create a beautiful web interface<br />
+            <strong>⏱️ Time:</strong> 20-25 minutes<br />
+            <strong>🌐 Tool:</strong> Streamlit for instant web apps
+          </div>
+
+          <p><strong>Content coming in the next update...</strong></p>
+
+          <button class="next-btn" onclick="nextLesson()">
+            Continue to Deployment →
+          </button>
+        </div>
+
+        <!-- Deployment & Next Steps -->
+        <div id="extras" class="lesson-content" style="display: none">
+          <h2>🎯 Deployment & Next Steps</h2>
+
+          <div
+            style="
+              background: linear-gradient(135deg, #667eea, #764ba2);
+              color: white;
+              padding: 1rem;
+              border-radius: 8px;
+              margin-bottom: 2rem;
+            "
+          >
+            <strong>🎯 Goal:</strong> Share your AI with the world<br />
+            <strong>⏱️ Time:</strong> 15-20 minutes<br />
+            <strong>🚀 Platform:</strong> Streamlit Cloud, Heroku, or GitHub
+            Pages
+          </div>
+
+          <p><strong>Content coming in the next update...</strong></p>
+
+          <div
+            style="
+              background: #f0fff4;
+              border: 2px solid #48bb78;
+              border-radius: 8px;
+              padding: 1.5rem;
+              margin: 2rem 0;
+              text-align: center;
+            "
+          >
+            <h4 style="color: #2f855a; margin-bottom: 1rem">
+              🎉 Course Complete!
+            </h4>
+            <p style="color: #2f855a; margin: 0; font-size: 1.1rem">
+              You've built your first AI from scratch! 🤖<br />
+              <strong>Welcome to the world of artificial intelligence!</strong>
+            </p>
+          </div>
+
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 100%"></div>
+          </div>
+        </div>
+
+
+        </div>
+      </main>
+    </div>
+
+    <script src="catvsdog.js"></script>
+  </body>
+</html>

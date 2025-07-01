@@ -80,16 +80,35 @@
   </head>
   <body>
     <!-- Header -->
+    <!-- LECSERÉLENDŐ HEADER RÉSZ (a 47-56 sorok helyett) -->
     <header>
       <div class="container">
-        <h1>🚀 Micro AI Projects</h1>
-        <nav>
-          <a href="#home">Home</a>
-          <a href="#projects">Projects</a>
-          <a href="#about">About</a>
-          <a href="#newsletter">Join</a>
-        </nav>
+        <div class="header-content">
+          <h1>🚀 Micro AI Projects</h1>
+
+          <!-- Mobile Hamburger Menu Toggle -->
+          <button class="mobile-menu-toggle" id="mobileMenuToggle">
+            <div class="hamburger">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </button>
+
+          <!-- Navigation -->
+          <nav>
+            <ul class="nav-links" id="navLinks">
+              <li><a href="#home">Home</a></li>
+              <li><a href="#projects">Projects</a></li>
+              <li><a href="#about">About</a></li>
+              <li><a href="#newsletter">Join</a></li>
+            </ul>
+          </nav>
+        </div>
       </div>
+
+      <!-- Mobile Overlay -->
+      <div class="mobile-overlay" id="mobileOverlay"></div>
     </header>
 
     <main>
@@ -563,6 +582,59 @@
             });
           }
         });
+      });
+    </script>
+
+    <script>
+      // HAMBURGER MENU JAVASCRIPT - add ez a script tag-ek közé
+      // A 225. sor körül a többi JavaScript után
+
+      // Mobile Menu Toggle
+      const mobileMenuToggle = document.getElementById("mobileMenuToggle");
+      const navLinks = document.getElementById("navLinks");
+      const mobileOverlay = document.getElementById("mobileOverlay");
+
+      function toggleMobileMenu() {
+        const isActive = navLinks.classList.contains("active");
+
+        if (isActive) {
+          // Close menu
+          navLinks.classList.remove("active");
+          mobileMenuToggle.classList.remove("active");
+          mobileOverlay.classList.remove("active");
+          document.body.style.overflow = "";
+        } else {
+          // Open menu
+          navLinks.classList.add("active");
+          mobileMenuToggle.classList.add("active");
+          mobileOverlay.classList.add("active");
+          document.body.style.overflow = "hid den";
+        }
+      }
+
+      // Event listeners
+      mobileMenuToggle.addEventListener("click", toggleMobileMenu);
+      mobileOverlay.addEventListener("click", toggleMobileMenu);
+
+      // Close menu when clicking on nav links
+      navLinks.addEventListener("click", (e) => {
+        if (e.target.tagName === "A") {
+          toggleMobileMenu();
+        }
+      });
+
+      // Close menu on escape key
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && navLinks.classList.contains("active")) {
+          toggleMobileMenu();
+        }
+      });
+
+      // Close menu on window resize (if desktop)
+      window.addEventListener("resize", () => {
+        if (window.innerWidth > 768 && navLinks.classList.contains("active")) {
+          toggleMobileMenu();
+        }
       });
     </script>
   </body>

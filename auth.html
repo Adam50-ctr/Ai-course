@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="hu">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bejelentkezés | Micro AI Projects</title>
+    <link rel="icon" href="icon.png" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+
+      .back-link {
+        position: absolute;
+        top: 30px;
+        left: 30px;
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 12px;
+        padding: 12px 20px;
+        color: white;
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.2s ease;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .back-link:hover {
+        background: rgba(255, 255, 255, 0.25);
+        transform: translateY(-1px);
+      }
+
+      .auth-container {
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        padding: 50px 40px;
+        width: 100%;
+        max-width: 420px;
+        position: relative;
+      }
+
+      .auth-header {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      .auth-header h1 {
+        font-size: 28px;
+        font-weight: 700;
+        color: #1a202c;
+        margin-bottom: 8px;
+      }
+
+      .auth-header p {
+        color: #718096;
+        font-size: 16px;
+      }
+
+      /* Clean Tab Design */
+      .auth-tabs {
+        display: flex;
+        background: #f7fafc;
+        border-radius: 12px;
+        padding: 4px;
+        margin-bottom: 30px;
+        position: relative;
+      }
+
+      .tab-indicator {
+        position: absolute;
+        top: 4px;
+        left: 4px;
+        width: calc(50% - 4px);
+        height: calc(100% - 8px);
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+      }
+
+      .tab-indicator.register {
+        transform: translateX(100%);
+      }
+
+      .tab-button {
+        flex: 1;
+        padding: 12px 20px;
+        background: transparent;
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        position: relative;
+        z-index: 2;
+        color: #718096;
+      }
+
+      .tab-button.active {
+        color: #667eea;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: #2d3748;
+        font-size: 14px;
+      }
+
+      .form-group input {
+        width: 100%;
+        padding: 16px 16px;
+        background: #f7fafc;
+        border: 2px solid #e2e8f0;
+        border-radius: 12px;
+        font-size: 16px;
+        color: #2d3748;
+        transition: all 0.2s ease;
+      }
+
+      .form-group input:focus {
+        outline: none;
+        border-color: #667eea;
+        background: white;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+      }
+
+      .form-group input::placeholder {
+        color: #a0aec0;
+      }
+
+      .submit-btn {
+        width: 100%;
+        padding: 16px;
+        background: #667eea;
+        color: white;
+        border: none;
+        border-radius: 12px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        margin-bottom: 20px;
+        position: relative;
+      }
+
+      .submit-btn:hover {
+        background: #5a67d8;
+        transform: translateY(-1px);
+        box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+      }
+
+      .submit-btn:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
+      }
+
+      .submit-btn:disabled:hover {
+        background: #667eea;
+        box-shadow: none;
+      }
+
+      .status-message {
+        padding: 16px;
+        border-radius: 12px;
+        margin-bottom: 20px;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .status-message.success {
+        background: #f0fff4;
+        color: #22543d;
+        border: 1px solid #9ae6b4;
+      }
+
+      .status-message.error {
+        background: #fed7d7;
+        color: #742a2a;
+        border: 1px solid #fc8181;
+      }
+
+      .status-message.info {
+        background: #ebf8ff;
+        color: #2c5282;
+        border: 1px solid #90cdf4;
+      }
+
+      .status-message.loading {
+        background: #f7fafc;
+        color: #4a5568;
+        border: 1px solid #cbd5e0;
+      }
+
+      /* User Panel */
+      .user-panel {
+        text-align: center;
+        display: none;
+      }
+
+      .user-panel.active {
+        display: block;
+      }
+
+      .user-avatar {
+        width: 60px;
+        height: 60px;
+        background: #667eea;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        color: white;
+        margin: 0 auto 20px;
+      }
+
+      .user-info h3 {
+        font-size: 20px;
+        color: #2d3748;
+        margin-bottom: 8px;
+      }
+
+      .user-email {
+        color: #718096;
+        margin-bottom: 30px;
+      }
+
+      .logout-btn {
+        background: #e53e3e;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 12px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+      }
+
+      .logout-btn:hover {
+        background: #c53030;
+        transform: translateY(-1px);
+      }
+
+      .benefits {
+        background: #f7fafc;
+        border-radius: 12px;
+        padding: 20px;
+        margin-top: 30px;
+      }
+
+      .benefits h4 {
+        color: #2d3748;
+        margin-bottom: 16px;
+        font-size: 16px;
+        font-weight: 600;
+      }
+
+      .benefit-list {
+        display: grid;
+        gap: 12px;
+      }
+
+      .benefit-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: #4a5568;
+        font-size: 14px;
+      }
+
+      .benefit-icon {
+        width: 20px;
+        height: 20px;
+        background: #667eea;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 10px;
+        flex-shrink: 0;
+      }
+
+      /* Loading spinner */
+      .loading-spinner {
+        width: 20px;
+        height: 20px;
+        border: 2px solid #ffffff40;
+        border-top: 2px solid #ffffff;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* Mobile */
+      @media (max-width: 768px) {
+        .auth-container {
+          margin: 20px;
+          padding: 40px 30px;
+        }
+
+        .back-link {
+          top: 20px;
+          left: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a href="index.html" class="back-link">
+      <span>←</span>
+      <span>Back to home</span>
+    </a>
+
+    <div class="auth-container">
+      <!-- Auth Form -->
+      <div id="authForm" class="auth-form">
+        <div class="auth-header">
+          <h1>Welcome Back!</h1>
+          <p>Join 1,200+ AI learners</p>
+        </div>
+
+        <div class="auth-tabs">
+          <div class="tab-indicator" id="tabIndicator"></div>
+          <button class="tab-button active" id="loginTab">Login</button>
+          <button class="tab-button" id="registerTab">Register</button>
+        </div>
+
+        <form id="authFormElement">
+          <div class="form-group">
+            <label for="email">Email address</label>
+            <input
+              type="email"
+              id="email"
+              placeholder="example@email.com"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              placeholder="At least 6 characters"
+              required
+            />
+          </div>
+
+          <button type="submit" class="submit-btn" id="submitBtn">
+            <span id="submitText">Login</span>
+            <div
+              id="submitSpinner"
+              class="loading-spinner"
+              style="display: none"
+            ></div>
+          </button>
+
+          <div id="status" class="status-message info">
+            <span>💡</span>
+            <span>Fill in your details to get started</span>
+          </div>
+        </form>
+
+        <div class="benefits">
+          <h4>What you get by joining?</h4>
+          <div class="benefit-list">
+            <div class="benefit-item">
+              <div class="benefit-icon">✓</div>
+              <span>Personalized learning path</span>
+            </div>
+            <div class="benefit-item">
+              <div class="benefit-icon">✓</div>
+              <span>Progress tracking</span>
+            </div>
+            <div class="benefit-item">
+              <div class="benefit-icon">✓</div>
+              <span>Exclusive content</span>
+            </div>
+            <div class="benefit-item">
+              <div class="benefit-icon">✓</div>
+              <span>Community access</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- User Panel -->
+      <div id="userPanel" class="user-panel">
+        <div class="user-avatar">✓</div>
+        <div class="user-info">
+          <h3>Successfully logged in!</h3>
+          <p class="user-email" id="userEmail"></p>
+          <button class="logout-btn" id="logoutBtn">Logout</button>
+        </div>
+      </div>
+    </div>
+
+    <script type="module">
+      document.addEventListener("DOMContentLoaded", async function () {
+        // Import Firebase
+        const { initializeApp } = await import(
+          "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"
+        );
+        const {
+          getAuth,
+          createUserWithEmailAndPassword,
+          signInWithEmailAndPassword,
+          signOut,
+          onAuthStateChanged,
+        } = await import(
+          "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js"
+        );
+
+        // Firebase config
+        const firebaseConfig = {
+          apiKey: "AIzaSyC-bQG1j2xsRiBxU8emivr6rxrGwV7sj6g",
+          authDomain: "micro-ai-projects.firebaseapp.com",
+          projectId: "micro-ai-projects",
+          storageBucket: "micro-ai-projects.firebasestorage.app",
+          messagingSenderId: "903965915050",
+          appId: "1:903965915050:web:6f8103f88bc556c7dc1dd3",
+          measurementId: "G-NWJB1LW4J9",
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        // DOM elements
+        const authForm = document.getElementById("authForm");
+        const userPanel = document.getElementById("userPanel");
+        const loginTab = document.getElementById("loginTab");
+        const registerTab = document.getElementById("registerTab");
+        const tabIndicator = document.getElementById("tabIndicator");
+        const authFormElement = document.getElementById("authFormElement");
+        const emailInput = document.getElementById("email");
+        const passwordInput = document.getElementById("password");
+        const submitBtn = document.getElementById("submitBtn");
+        const submitText = document.getElementById("submitText");
+        const submitSpinner = document.getElementById("submitSpinner");
+        const status = document.getElementById("status");
+        const userEmail = document.getElementById("userEmail");
+        const logoutBtn = document.getElementById("logoutBtn");
+
+        let isLoginMode = true;
+
+        // Tab switching with clear visual indicator
+        loginTab.addEventListener("click", () => switchMode(true));
+        registerTab.addEventListener("click", () => switchMode(false));
+
+        function switchMode(loginMode) {
+          isLoginMode = loginMode;
+
+          // Clear visual state
+          loginTab.classList.remove("active");
+          registerTab.classList.remove("active");
+          tabIndicator.classList.remove("register");
+
+          if (loginMode) {
+            loginTab.classList.add("active");
+            submitText.textContent = "Login";
+            tabIndicator.classList.remove("register");
+          } else {
+            registerTab.classList.add("active");
+            submitText.textContent = "Register";
+            tabIndicator.classList.add("register");
+          }
+
+          updateStatus("Fill in your details to get started", "info");
+        }
+
+        function updateStatus(message, type = "info") {
+          const icons = {
+            success: "✅",
+            error: "❌",
+            info: "💡",
+            loading: "⏳",
+          };
+
+          status.innerHTML = `
+                    <span>${icons[type]}</span>
+                    <span>${message}</span>
+                `;
+          status.className = `status-message ${type}`;
+        }
+
+        function setLoading(loading) {
+          submitBtn.disabled = loading;
+          if (loading) {
+            submitText.style.display = "none";
+            submitSpinner.style.display = "inline-block";
+          } else {
+            submitText.style.display = "inline";
+            submitSpinner.style.display = "none";
+          }
+        }
+
+        function showUserPanel(user) {
+          authForm.style.display = "none";
+          userPanel.classList.add("active");
+          userEmail.textContent = user.email;
+        }
+
+        function showAuthForm() {
+          authForm.style.display = "block";
+          userPanel.classList.remove("active");
+        }
+
+        // Auth state observer
+        onAuthStateChanged(auth, (user) => {
+          if (user) {
+            updateStatus(`Welcome: ${user.email}`, "success");
+            showUserPanel(user);
+
+            setTimeout(() => {
+              window.location.href = "index.html";
+            }, 2000);
+          } else {
+            showAuthForm();
+          }
+        });
+
+        // Form submission
+        authFormElement.addEventListener("submit", async (e) => {
+          e.preventDefault();
+
+          const email = emailInput.value.trim();
+          const password = passwordInput.value;
+
+          if (!email || !password) {
+            updateStatus("Please enter your email and password!", "error");
+            return;
+          }
+
+          if (password.length < 6) {
+            updateStatus("Password must be at least 6 characters!", "error");
+            return;
+          }
+
+          setLoading(true);
+
+          try {
+            if (isLoginMode) {
+              updateStatus("Logging in...", "loading");
+              await signInWithEmailAndPassword(auth, email, password);
+            } else {
+              updateStatus("Creating account...", "loading");
+              await createUserWithEmailAndPassword(auth, email, password);
+            }
+
+            emailInput.value = "";
+            passwordInput.value = "";
+          } catch (error) {
+            let errorMessage = "";
+            switch (error.code) {
+              case "auth/email-already-in-use":
+                errorMessage = "This email address is already in use.";
+                break;
+              case "auth/invalid-email":
+                errorMessage = "Invalid email address.";
+                break;
+              case "auth/weak-password":
+                errorMessage = "Password too weak.";
+                break;
+              case "auth/user-not-found":
+                errorMessage = "No user found with this email address.";
+                break;
+              case "auth/wrong-password":
+                errorMessage = "Wrong password.";
+                break;
+              default:
+                errorMessage = isLoginMode
+                  ? "Login failed."
+                  : "Registration failed.";
+            }
+
+            updateStatus(errorMessage, "error");
+          } finally {
+            setLoading(false);
+          }
+        });
+
+        // Logout
+        logoutBtn.addEventListener("click", async () => {
+          try {
+            await signOut(auth);
+            updateStatus("Successfully logged out!", "success");
+          } catch (error) {
+            updateStatus("Logout failed.", "error");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -461,19 +461,27 @@
           </div>
         </div>
       </section>
-
-      <section id="account" class="account-section">
-        <div class="container">
-          <h3>🔐 Bejelentkezés / Regisztráció</h3>
-          <input type="email" id="email" placeholder="Email" />
-          <input type="password" id="password" placeholder="Jelszó" />
-          <br />
-          <button id="registerBtn">Regisztráció</button>
-          <button id="loginBtn">Bejelentkezés</button>
-          <p id="authStatus"></p>
-        </div>
-      </section>
     </main>
+
+    <!-- Improved Auth CTA Section -->
+    <section class="auth-cta">
+      <div class="container">
+        <div class="auth-cta-content">
+          <div class="auth-icon">🔐</div>
+          <h3>Join the Community</h3>
+          <p>
+            Sign up or log in to access the full content and join 1,200+ AI
+            learners
+          </p>
+          <a href="auth.html" class="auth-button">
+            <span class="button-text">Login / Register</span>
+            <span class="button-arrow">→</span>
+          </a>
+
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- Footer -->
     <footer>
@@ -537,6 +545,178 @@
       });
     </script>
 
-    <script type="module" src="main.js"></script>
+    <script type="module">
+      // Wait for DOM to be fully loaded
+      document.addEventListener("DOMContentLoaded", async function () {
+        console.log("🚀 DOM betöltve, Firebase inicializálás kezdődik...");
+
+        // Import Firebase modules
+        const { initializeApp } = await import(
+          "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"
+        );
+        const {
+          getAuth,
+          createUserWithEmailAndPassword,
+          signInWithEmailAndPassword,
+          signOut,
+          onAuthStateChanged,
+        } = await import(
+          "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js"
+        );
+
+        // Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyC-bQG1j2xsRiBxU8emivr6rxrGwV7sj6g",
+          authDomain: "micro-ai-projects.firebaseapp.com",
+          projectId: "micro-ai-projects",
+          storageBucket: "micro-ai-projects.firebasestorage.app",
+          messagingSenderId: "903965915050",
+          appId: "1:903965915050:web:6f8103f88bc556c7dc1dd3",
+          measurementId: "G-NWJB1LW4J9",
+        };
+
+        // DOM elements - JAVÍTOTT ID-kkal
+        const emailInput = document.getElementById("email");
+        const passwordInput = document.getElementById("password");
+        const status = document.getElementById("status"); // ← EZ VOLT A HIBA!
+
+        // Debug: ellenőrizd hogy megtalálja-e
+        console.log("Email input:", emailInput);
+        console.log("Password input:", passwordInput);
+        console.log("Status elem:", status);
+
+        // Check if all elements exist
+        if (!emailInput || !passwordInput || !status) {
+          console.error("❌ Hiányzó DOM elemek!");
+          console.error(
+            "Email:",
+            !!emailInput,
+            "Password:",
+            !!passwordInput,
+            "Status:",
+            !!status
+          );
+          return;
+        }
+        // Initialize Firebase
+        let app, auth;
+
+        try {
+          app = initializeApp(firebaseConfig);
+          auth = getAuth(app);
+          console.log("✅ Firebase sikeresen inicializálva");
+        } catch (error) {
+          console.error("Firebase inicializálási hiba:", error);
+          status.textContent = "❌ Firebase hiba: " + error.message;
+          return;
+        }
+
+        // Helper function to update status
+        function updateStatus(message) {
+          if (status) {
+            status.textContent = message;
+          }
+          console.log(message);
+        }
+
+        // Auth state observer
+        onAuthStateChanged(auth, (user) => {
+          if (user) {
+            updateStatus(`✅ Bejelentkezve: ${user.email}`);
+          } else {
+            updateStatus("ℹ️ Nincs bejelentkezett felhasználó");
+          }
+        });
+
+        // Register function
+        async function register() {
+          const email = emailInput?.value?.trim();
+          const password = passwordInput?.value;
+
+          if (!email || !password) {
+            updateStatus("❌ Kérlek add meg az email címet és jelszót!");
+            return;
+          }
+
+          try {
+            updateStatus("⏳ Regisztráció folyamatban...");
+            const userCredential = await createUserWithEmailAndPassword(
+              auth,
+              email,
+              password
+            );
+            updateStatus(
+              `✅ Sikeres regisztráció! Üdvözöljük: ${userCredential.user.email}`
+            );
+          } catch (error) {
+            console.error("Regisztráció hiba:", error);
+            let errorMessage = "Regisztráció sikertelen: ";
+            switch (error.code) {
+              case "auth/email-already-in-use":
+                errorMessage += "Ez az email cím már használatban van.";
+                break;
+              case "auth/invalid-email":
+                errorMessage += "Érvénytelen email cím.";
+                break;
+              case "auth/weak-password":
+                errorMessage += "Túl gyenge jelszó.";
+                break;
+              default:
+                errorMessage += error.message;
+            }
+            updateStatus("❌ " + errorMessage);
+          }
+        }
+
+        // Login function
+        async function login() {
+          const email = emailInput?.value?.trim();
+          const password = passwordInput?.value;
+
+          if (!email || !password) {
+            updateStatus("❌ Kérlek add meg az email címet és jelszót!");
+            return;
+          }
+
+          try {
+            updateStatus("⏳ Bejelentkezés folyamatban...");
+            const userCredential = await signInWithEmailAndPassword(
+              auth,
+              email,
+              password
+            );
+            updateStatus(
+              `✅ Sikeres bejelentkezés! Üdvözöljük: ${userCredential.user.email}`
+            );
+          } catch (error) {
+            console.error("Bejelentkezés hiba:", error);
+            let errorMessage = "Bejelentkezés sikertelen: ";
+            switch (error.code) {
+              case "auth/user-not-found":
+                errorMessage += "Nincs felhasználó ezzel az email címmel.";
+                break;
+              case "auth/wrong-password":
+                errorMessage += "Hibás jelszó.";
+                break;
+              case "auth/invalid-email":
+                errorMessage += "Érvénytelen email cím.";
+                break;
+              default:
+                errorMessage += error.message;
+            }
+            updateStatus("❌ " + errorMessage);
+          }
+        }
+
+        // Event listeners
+        const registerBtn = document.getElementById("registerBtn");
+        const loginBtn = document.getElementById("loginBtn");
+
+        if (registerBtn) registerBtn.addEventListener("click", register);
+        if (loginBtn) loginBtn.addEventListener("click", login);
+
+        console.log("🎉 Firebase Authentication működőképes!");
+      });
+    </script>
   </body>
 </html>

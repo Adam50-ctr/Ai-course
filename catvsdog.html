@@ -15,84 +15,248 @@
   </head>
   <body>
     <header>
-      <div class="container">
-        <div class="header-content">
-          <div class="logo">🐱🐶 Cat vs Dog AI Course</div>
-          <a href="index.html" class="back-btn">← Back to Projects</a>
-        </div>
+  <div class="container">
+    <div class="header-content">
+      <div class="logo">🐱🐶 Cat vs Dog AI Course</div>
+      
+      <!-- Add this user info area -->
+      <div class="header-actions" style="display: flex; align-items: center; gap: 15px;">
+        <!-- User info will be inserted here by JavaScript -->
+        
+        <a href="index.html" class="back-btn">← Back to Projects</a>
       </div>
-    </header>
+    </div>
+  </div>
+</header>
 
+
+
+    <!-- Purchase success message -->
+    <div id="purchaseSuccess" style="display: none; background: linear-gradient(135deg, #48bb78, #38a169); color: white; padding: 2rem; border-radius: 12px; text-align: center; margin-top: 2rem;">
+      <h3 style="color: white; margin-bottom: 1rem;">🎉 Welcome to the Course!</h3>
+      <p style="color: white; margin-bottom: 1.5rem;">Your purchase was successful. All lessons are now unlocked!</p>
+      <button onclick="courseManager.showLesson('intro')" style="background: white; color: #48bb78; border: none; padding: 12px 24px; border-radius: 8px; font-weight: 600; cursor: pointer;">
+        Start Learning →
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- 3. Add these CSS styles for better user experience -->
+<style>
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+#userInfo {
+  display: none;
+  background: rgba(102, 126, 234, 0.1);
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-size: 14px;
+}
+
+#userEmail {
+  color: #667eea;
+  font-weight: 500;
+  margin-right: 10px;
+}
+
+#logoutBtn {
+  background: #e53e3e;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: all 0.2s ease;
+}
+
+#logoutBtn:hover {
+  background: #c53030;
+}
+
+.payment-buttons {
+  transition: all 0.3s ease;
+}
+
+.lesson-item.locked {
+  opacity: 0.6;
+  cursor: not-allowed !important;
+  position: relative;
+}
+
+.lesson-item.locked::after {
+  content: "🔒";
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 14px;
+}
+
+/* Animations */
+@keyframes unlockPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); background: #48bb78; color: white; }
+  100% { transform: scale(1); }
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+/* Success message styling */
+.success-message {
+  animation: slideInRight 0.5s ease-out;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .header-actions {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-end;
+  }
+  
+  #userInfo {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+  
+  .payment-screen {
+    padding: 1rem;
+  }
+  
+  #loginPrompt {
+    padding: 1rem;
+    margin: 1rem 0;
+  }
+}
+
+/* Loading states */
+.loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.loading::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+  height: 20px;
+  border: 2px solid #f3f3f3;
+  border-top: 2px solid #667eea;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+</style>
     <div class="main-content">
-      <nav class="sidebar">
-        <h3 class="course-title">Course Lessons</h3>
-        <button class="lesson-item active" onclick="showLesson('payment')">
-          💳 Purchase Course - $7.99
-        </button>
-        <button class="lesson-item locked" onclick="showLesson('intro')">
-          🚀 Introduction & Demo
-        </button>
-        <button class="lesson-item" onclick="showLesson('basics')">
-          🧠 AI Basics (FREE)
-        </button>
-        <button class="lesson-item locked" onclick="showLesson('setup')">
-          ⚙️ Environment Setup
-        </button>
-        <button class="lesson-item locked" onclick="showLesson('data')">
-          📊 Understanding the Data
-        </button>
-        <button class="lesson-item locked" onclick="showLesson('model')">
-          🤖 Building the Model
-        </button>
-        <button class="lesson-item locked" onclick="showLesson('training')">
-          🏋️ Training the Model
-        </button>
-        <button class="lesson-item locked" onclick="window.location.href='catvsdog2.html'">
-          🔮 Making Predictions
-        </button>
-        <button class="lesson-item locked" onclick="window.location.href='catvsdog2.html'">
-          💻 Building the Web App
-        </button>
-        <button class="lesson-item locked" onclick="window.location.href='catvsdog2.html'">
-          🎯 Deployment & Next Steps
-        </button>
-      </nav>
+     <!-- A catvsdog.html sidebar részében cseréld le ezeket: -->
+    <nav class="sidebar">
+  <h3 class="course-title">Course Lessons</h3>
+  
+  <!-- Ingyenes leckék -->
+  <button class="lesson-item active" onclick="showLesson('payment')">
+    💳 Payment & Welcome
+  </button>
+  <button class="lesson-item" onclick="showLesson('basics')">
+    🧠 AI Basics (FREE)
+  </button>
+  
+  <!-- Premium leckék -->
+  <button class="lesson-item locked" onclick="showLesson('intro')">
+    🚀 Introduction & Demo
+  </button>
+  <button class="lesson-item locked" onclick="showLesson('setup')">
+    ⚙️ Environment Setup
+  </button>
+  <button class="lesson-item locked" onclick="showLesson('data')">
+    📊 Understanding the Data
+  </button>
+  <button class="lesson-item locked" onclick="showLesson('model')">
+    🤖 Building the Model
+  </button>
+  <button class="lesson-item locked" onclick="showLesson('training')">
+    🏋️ Training the Model
+  </button>
+  
+  <!-- Második oldal leckék -->
+  <button class="lesson-item locked" onclick="goToSecondPage('prediction')">
+    🔮 Making Predictions
+  </button>
+  <button class="lesson-item locked" onclick="goToSecondPage('app')">
+    💻 Building the Web App
+  </button>
+  <button class="lesson-item locked" onclick="goToSecondPage('extras')">
+    🎯 Deployment & Next Steps
+  </button>
+  
+  <!-- PREMIUM PURCHASE GOMB A SIDEBAR ALJÁN -->
+  <div style="margin-top: 2rem; padding-top: 2rem; border-top: 2px solid #e2e8f0;">
+    <button class="lesson-item premium-purchase" onclick="showLesson('payment')" style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; font-weight: 700; text-align: center;">
+      🚀 Purchase Course - $7.99
+    </button>
+  </div>
+</nav>
+
+<!-- 2. TISZTÍTOTT PAYMENT SCREEN - verification code nélkül -->
+<div id="payment" class="lesson-content">
+  <div class="payment-screen">
+    <h1>🐱🐶 Cat vs Dog Classifier</h1>
+    <p class="course-description">
+      Learn to build your first AI image classifier in under 1 hour!
+    </p>
+
+    <div class="price">$7.99</div>
+
+    <ul class="features-list">
+      <li>✅ Complete step-by-step tutorial</li>
+      <li>✅ All code provided & explained</li>
+      <li>✅ Free AI basics introduction</li>
+      <li>✅ Downloadable Jupyter notebook</li>
+      <li>✅ Requirements.txt included</li>
+      <li>✅ Bonus: Deploy your app guide</li>
+      <li>✅ Lifetime access</li>
+    </ul>
+
+    <!-- EGYSZERŰSÍTETT PAYMENT BUTTONS - nincs verification code -->
+    <div class="payment-buttons">
+      <a class="payment-btn" href="https://buy.stripe.com/00w7sLdl24ngdeg9hqgIo00" id="stripeBtn">
+        🚀 Start Learning Now - $7.99
+      </a>
+
+      <p class="guarantee-text">
+        💰 30-day money-back guarantee<br>
+        🔒 Secure payment processing<br>
+        📧 <a href="mailto:support@yoursite.com" style="color: #667eea;">Contact support</a> if you have a code
+      </p>
+    </div>
+
+    <!-- Purchase success message -->
+    <div id="purchaseSuccess" style="display: none; background: linear-gradient(135deg, #48bb78, #38a169); color: white; padding: 2rem; border-radius: 12px; text-align: center; margin-top: 2rem;">
+      <h3 style="color: white; margin-bottom: 1rem;">🎉 Welcome to the Course!</h3>
+      <p style="color: white; margin-bottom: 1.5rem;">Your purchase was successful. All lessons are now unlocked!</p>
+      <button onclick="courseManager.showLesson('intro')" style="background: white; color: #48bb78; border: none; padding: 12px 24px; border-radius: 8px; font-weight: 600; cursor: pointer;">
+        Start Learning →
+      </button>
+    </div>
+  </div>
+</div>
 
       <main class="content-area">
-        <!-- Payment Screen -->
-        <div id="payment" class="lesson-content">
-          <div class="payment-screen">
-            <h1>🐱🐶 Cat vs Dog Classifier</h1>
-            <p class="course-description">
-              Learn to build your first AI image classifier in under 1 hour!
-            </p>
-
-            <div class="price">$7.99</div>
-
-            <ul class="features-list">
-              <li>✅ Complete step-by-step tutorial</li>
-              <li>✅ All code provided & explained</li>
-              <li>✅ Free AI basics introduction</li>
-              <li>✅ Downloadable Jupyter notebook</li>
-              <li>✅ Requirements.txt included</li>
-              <li>✅ Bonus: Deploy your app guide</li>
-              <li>✅ Lifetime access</li>
-            </ul>
-
-            <a
-              class="payment-btn"
-              href="https://buy.stripe.com/00w7sLdl24ngdeg9hqgIo00"
-            >
-              🚀 Start Learning Now - $7.99
-            </a>
-
-            <p class="guarantee-text">
-              💰 30-day money-back guarantee<br />
-              🔒 Secure payment processing
-            </p>
-          </div>
-        </div>
-
         <!-- Introduction -->
           <div id="intro" class="lesson-content" style="display: none">
           <h2>🚀 Welcome to Your First AI Project!</h2>
@@ -1779,7 +1943,7 @@ print("\n🎯 For this tutorial, we'll use our custom model to understand how CN
     <div class="progress-fill" style="width: 50%;"></div>
   </div>
 
-  <button class="next-btn" onclick="window.location.href='catvsdog2.html'">
+ <button class="next-btn" onclick="nextLesson()">
     Model Ready! Let's Train Our AI →
   </button>
 </div>
@@ -2422,7 +2586,6 @@ print("\n🎯 For this tutorial, we'll use our custom model to understand how CN
         </div>
       </main>
     </div>
-
-    <script src="catvsdog.js"></script>
+    <script src="catvsdog-fixed.js"></script>
   </body>
 </html>
